@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE APOSTATE — A Documentary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #141414;
+    --text: #F0EDE6;
+    --accent: #B85A38;
+    --muted: #6B6560;
+    --card: #1E1E1E;
+    --serif: Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(20,20,20,0.95);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(107,101,96,0.15);
+  }
+  .nav-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+  }
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 1.25rem; list-style: none; flex-wrap: wrap;
+  }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .hamburger {
+    display: none; background: none; border: none; cursor: pointer;
+    flex-direction: column; gap: 4px; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 20px; height: 2px; background: var(--text);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(20,20,20,0.98); flex-direction: column;
+      padding: 1rem 1.5rem 1.5rem; gap: 0.75rem;
+      border-bottom: 1px solid rgba(107,101,96,0.15);
+    }
+    .nav-links.open { display: flex; }
+  }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+  section { padding: 5rem 0; }
+
+  /* SECTION HEADERS */
+  .section-header {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    padding-left: 1.25rem;
+    border-left: 3px solid var(--accent);
+    line-height: 1.3;
+  }
+
+  /* TYPOGRAPHY */
+  h1, h2, h3 { font-family: var(--serif); }
+  .label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 0.5rem;
+  }
+  .accent-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.5rem;
+  }
+  .italic-footer {
+    font-family: var(--serif); font-style: italic;
+    color: var(--muted); margin-top: 2.5rem; font-size: 0.95rem;
+  }
+  .pull-quote {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.1rem; line-height: 1.6; color: var(--muted);
+  }
+  .body-text { font-size: 0.95rem; color: var(--text); line-height: 1.8; }
+  .body-text + .body-text { margin-top: 1rem; }
+  .thin-rule { border: none; border-top: 1px solid rgba(107,101,96,0.3); margin: 1rem 0; }
+
+  /* CARDS */
+  .card {
+    background: var(--card); padding: 2rem; border-radius: 2px;
+  }
+  .card h3 {
+    font-size: 1.05rem; margin-bottom: 0.25rem;
+  }
+
+  /* GRIDS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
+  .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+  @media (max-width: 768px) {
+    .grid-2, .grid-3, .grid-2x2 { grid-template-columns: 1fr; }
+  }
+
+  /* === HERO === */
+  #hero { padding-top: 8rem; padding-bottom: 5rem; text-align: center; }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    font-weight: normal;
+  }
+  .hero-subtitle {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.15rem; color: var(--muted); margin-bottom: 2rem;
+  }
+  .hero-logline {
+    font-family: var(--serif);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    max-width: 600px; margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+  .hero-quote-block {
+    max-width: 500px; margin-left: auto; margin-right: 1.5rem;
+    text-align: right; margin-bottom: 3rem;
+  }
+  @media (max-width: 768px) {
+    .hero-quote-block { margin-right: auto; text-align: center; }
+  }
+  .hero-quote {
+    font-family: var(--serif); font-style: italic;
+    font-size: 1.05rem; color: var(--muted); line-height: 1.6;
+  }
+  .hero-attribution {
+    font-size: 0.8rem; color: var(--accent); margin-top: 0.5rem;
+  }
+  .hero-byline {
+    font-size: 0.85rem; color: var(--muted); letter-spacing: 0.05em;
+  }
+
+  /* === CASE === */
+  .case-left .body-text strong { color: var(--text); }
+
+  /* === CULTURAL MOMENT === */
+  .moment-lede {
+    font-size: 0.95rem; color: var(--muted); margin-bottom: 2.5rem;
+    max-width: 800px; line-height: 1.8;
+  }
+  .moment-card h3 { color: var(--text); font-size: 1rem; margin-bottom: 0.75rem; }
+  .moment-card .body-text { color: rgba(240,237,230,0.85); font-size: 0.9rem; }
+
+  /* === INHERITANCE === */
+  #inheritance {
+    background: #1A1A1A;
+    border-top: 1px solid rgba(184,90,56,0.15);
+    border-bottom: 1px solid rgba(184,90,56,0.15);
+  }
+  .inheritance-panel {
+    background: rgba(20,20,20,0.6); padding: 2rem; border-radius: 2px;
+    border: 1px solid rgba(107,101,96,0.12);
+  }
+  .inheritance-panel h3 {
+    font-size: 1.1rem; letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .inheritance-panel .body-text { font-size: 0.9rem; }
+
+  /* === WINDOW === */
+  .date-card {
+    background: var(--card); padding: 2rem; text-align: center; border-radius: 2px;
+  }
+  .date-card .date-value {
+    font-family: var(--serif); font-size: 1.5rem; margin-bottom: 0.25rem;
+  }
+  .date-card .date-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .date-card .body-text { font-size: 0.85rem; color: var(--muted); }
+
+  /* === CHARACTERS === */
+  .char-card { background: var(--card); padding: 2rem; border-radius: 2px; }
+  .char-card h3 { font-size: 1.1rem; margin-bottom: 0.15rem; }
+  .char-card .label { margin-bottom: 0.75rem; }
+  .char-card .body-text { font-size: 0.9rem; }
+
+  /* === ARCHIVAL === */
+  .archival-list { list-style: none; }
+  .archival-list li {
+    font-size: 0.9rem; padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(107,101,96,0.1);
+    line-height: 1.6;
+  }
+
+  /* === WITNESSES === */
+  .witness-card { background: var(--card); padding: 2rem; border-radius: 2px; }
+  .witness-card h3 {
+    font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
+  }
+  .witness-entry { margin-bottom: 1.25rem; }
+  .witness-entry strong { display: block; font-size: 0.95rem; margin-bottom: 0.15rem; }
+  .witness-entry span { font-size: 0.85rem; color: var(--muted); }
+
+  /* === FORM === */
+  .form-comp { margin-bottom: 1.25rem; }
+  .form-comp strong { font-family: var(--serif); font-size: 0.95rem; }
+  .form-comp span { font-size: 0.85rem; color: var(--muted); display: block; margin-top: 0.15rem; }
+
+  /* === DIRECTOR === */
+  .director-card {
+    background: var(--card); padding: 2rem; border-radius: 2px;
+    margin-bottom: 1.25rem;
+    display: grid; grid-template-columns: 240px 1px 1fr; gap: 2rem;
+    align-items: start;
+  }
+  .director-card .dir-info h3 { font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.25rem; }
+  .director-card .dir-info .label { font-size: 0.8rem; color: var(--muted); }
+  .director-card .dir-divider { background: var(--accent); width: 1px; align-self: stretch; }
+  .director-card .dir-text { font-size: 0.9rem; line-height: 1.7; }
+
+  @media (max-width: 768px) {
+    .director-card {
+      grid-template-columns: 1fr; gap: 1rem;
+    }
+    .director-card .dir-divider {
+      width: 100%; height: 1px; background: var(--accent);
+    }
+  }
+
+  /* === AUDIENCE === */
+  .audience-card { background: var(--card); padding: 2rem; border-radius: 2px; }
+  .audience-card .accent-label { margin-bottom: 0.35rem; }
+  .audience-card .audience-scope {
+    font-family: var(--serif); font-style: italic;
+    font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem;
+  }
+  .audience-card .body-text { font-size: 0.9rem; }
+
+  /* === NEXT STEPS === */
+  .step-card {
+    background: var(--card); padding: 2rem; border-radius: 2px;
+    margin-bottom: 1.25rem; display: flex; gap: 2rem; align-items: flex-start;
+  }
+  .step-number {
+    font-family: var(--serif); font-size: 2.5rem; color: var(--accent);
+    line-height: 1; flex-shrink: 0; min-width: 2.5rem; text-align: center;
+  }
+  .step-content h3 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 0.5rem; }
+  .step-content .body-text { font-size: 0.9rem; }
+
+  .contact-line {
+    text-align: center; margin-top: 3rem;
+    font-size: 0.9rem; color: var(--muted);
+  }
+  .contact-line a { color: var(--accent); text-decoration: none; }
+  .contact-line a:hover { text-decoration: underline; }
+
+  /* Footer space */
+  footer { padding: 3rem 0; text-align: center; }
+  footer .divider-line { border: none; border-top: 1px solid rgba(107,101,96,0.2); margin-bottom: 2rem; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">The Apostate</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero">Cover</a></li>
+      <li><a href="#case">Case</a></li>
+      <li><a href="#moment">Moment</a></li>
+      <li><a href="#protagonist">Protagonist</a></li>
+      <li><a href="#inheritance">Inheritance</a></li>
+      <li><a href="#window">Window</a></li>
+      <li><a href="#characters">Characters</a></li>
+      <li><a href="#archival">Archival</a></li>
+      <li><a href="#witnesses">Witnesses</a></li>
+      <li><a href="#form">Form</a></li>
+      <li><a href="#director">Director</a></li>
+      <li><a href="#audience">Audience</a></li>
+      <li><a href="#next">Next</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <h1 class="hero-title">THE APOSTATE</h1>
+    <p class="hero-subtitle">A Documentary</p>
+    <p class="hero-logline">One man. One trial. The family he can't escape<br>and the name he gave his children.</p>
+    <div class="hero-quote-block">
+      <p class="hero-quote">"This life is a mear grain of sand compared to eternity."</p>
+      <p class="hero-attribution">— Barry Morphew, text to Suzanne<br>the day she disappeared</p>
+    </div>
+    <p class="hero-byline">Trial: October 13 – November 20, 2026</p>
+  </div>
+</section>
+
+<!-- THE CASE IS NOT THE STORY -->
+<section id="case">
+  <div class="container">
+    <h2 class="section-header">The Case Is Not the Story</h2>
+    <div class="grid-2">
+      <div class="case-left">
+        <p class="body-text"><strong>What we know:</strong> Barry Morphew likely killed his wife Suzanne with animal tranquilizer on Mother's Day, 2020. Her remains were found in a shallow grave in 2023.</p>
+        <p class="body-text">The evidence is damning. The case is strong. The verdict is almost certainly coming.</p>
+        <p class="body-text" style="margin-top:1.5rem; font-family: var(--serif); font-style: italic; color: var(--accent);">This is not the story.</p>
+      </div>
+      <div class="case-right">
+        <p class="body-text">The story is a poet driving alone to a small Colorado city to watch his childhood hero be destroyed — and to reckon with the mythology that made him.</p>
+        <p class="body-text">Jason Morphew is the only person in his family who believes Barry is guilty. The rest have closed ranks.</p>
+        <p class="body-text" style="font-weight:600;">This film is about what it means to carry a name.</p>
+      </div>
+    </div>
+    <p class="italic-footer">The genre is the foil. The subject is the self.</p>
+  </div>
+</section>
+
+<!-- THE CULTURAL MOMENT -->
+<section id="moment">
+  <div class="container">
+    <h2 class="section-header">The Cultural Moment</h2>
+    <p class="moment-lede">This is not a story about a murder. It is a story about how a man's world — his faith, his family, his certainty about who is saved and who is not — can become a closed system that justifies everything.</p>
+    <div class="grid-2x2">
+      <div class="card moment-card">
+        <h3>Evangelicalism as control</h3>
+        <p class="body-text">Barry's theology — that this life is a "mear grain of sand compared to eternity" — is not a fringe position. It is the operating system of tens of millions of Americans. The film asks what it does to a person, and to the people closest to them.</p>
+      </div>
+      <div class="card moment-card">
+        <h3>MAGA and masculine authority</h3>
+        <p class="body-text">Barry cast his missing wife's ballot for Trump while under suspicion of her murder. That act — the husband as sole arbiter of the household — is the political made intimate and lethal.</p>
+      </div>
+      <div class="card moment-card">
+        <h3>The family as closed system</h3>
+        <p class="body-text">Every member of the Morphew family has closed ranks. The daughters attend every hearing at their father's side. Jason is the only one who got out — and the only one who came back to look.</p>
+      </div>
+      <div class="card moment-card">
+        <h3>The cost of leaving</h3>
+        <p class="body-text">Jason's estrangement from his evangelical family is decades in the making. The trial is the moment it becomes irreversible. That rupture is the emotional engine of the film.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PROTAGONIST -->
+<section id="protagonist">
+  <div class="container">
+    <h2 class="section-header">The Protagonist</h2>
+    <div class="grid-2">
+      <div>
+        <h3 style="font-family:var(--serif); font-size:1.2rem; margin-bottom:0.25rem;">Jason Morphew</h3>
+        <p class="body-text">Yale BA. UCLA PhD in Renaissance Literature. Poet and singer-songwriter (Brassland, Ba Da Bing). Author of <em>Eject City</em> (2025) and <em>dead boy</em> (2018). Has written about the case for <em>The Daily Beast</em>. Has a press pass for the trial. Will be publishing dispatches in <em>The Arkansas Democrat-Gazette</em>.</p>
+        <p class="body-text">Grew up evangelical in Hot Springs, Arkansas. Once marched against abortion rights at the state capitol. Now takes his Jewish children to protest police brutality in Los Angeles.</p>
+        <p class="body-text">He is not an investigative journalist. He is not a true crime fan. He harbors no deep belief in justice. He is an LA-based poet whose MAGA cousin seems to have killed his wife.</p>
+      </div>
+      <div>
+        <p class="accent-label">The Positioning</p>
+        <p class="body-text">Barry grew up near Alexandria, Indiana — local baseball legend, Toronto Blue Jays draft pick, evangelical patriarch. Jason grew up in Hot Springs, Arkansas — evangelical too, same extended family, same God, different geography.</p>
+        <p class="body-text">Barry went deeper into the world that made them. Jason ran as far as he could — Yale, UCLA, Los Angeles, a Jewish family of his own making.</p>
+        <p class="body-text">The trial is Jason's reckoning: with who he was, what he became, and what name he handed to his children.</p>
+      </div>
+    </div>
+    <p class="italic-footer">He once wanted to be Barry.</p>
+  </div>
+</section>
+
+<!-- THE INHERITANCE -->
+<section id="inheritance">
+  <div class="container">
+    <h2 class="section-header">The Inheritance</h2>
+    <p class="pull-quote" style="margin-bottom:2.5rem;">Jason cannot determine whether he ever really left the world that made him. Alamosa is the only place he can find out.</p>
+    <div class="grid-2">
+      <div class="inheritance-panel">
+        <h3>The Name</h3>
+        <hr class="thin-rule">
+        <p class="body-text">Jason gave his children the Morphew name before he knew what it contained. He couldn't give them the extended family — they've never met another Morphew. So he gave them the name alone, stripped of context, as an act of identity.</p>
+        <p class="body-text">The trial reveals what the name actually holds: a woman in a shallow grave, a theology of control, a family sealed against evidence.</p>
+        <p class="body-text">The film is Jason looking directly at what he handed his children — and deciding, in real time, whether it can be redeemed or must simply be carried.</p>
+      </div>
+      <div class="inheritance-panel">
+        <h3>The Sedative in the Bones</h3>
+        <hr class="thin-rule">
+        <p class="body-text">Barry allegedly killed Suzanne with BAM — a wildlife tranquilizer used to sedate deer. The autopsy found it in her femur.</p>
+        <p class="body-text">What sedates a person into compliance? For Suzanne it was literal. For Jason it was evangelical certainty — the same closed system of faith that Barry used to justify everything, up to and including, Jason suspects, murder.</p>
+        <p class="body-text">Jason woke up and ran. The trial is where he finds out whether he got it all out of his bones — or whether some of it is still in there, invisible, undetected, the way Suzanne's was.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FIXED WINDOW -->
+<section id="window">
+  <div class="container">
+    <h2 class="section-header">The Window Is Fixed</h2>
+    <div class="grid-3">
+      <div class="date-card">
+        <p class="date-value">October 13</p>
+        <p class="date-label">Trial begins</p>
+        <p class="body-text">Alamosa, Colorado<br>Jason arrives alone</p>
+      </div>
+      <div class="date-card">
+        <p class="date-value">~6 weeks</p>
+        <p class="date-label">Duration</p>
+        <p class="body-text">Jason embedded with<br>press pass and camera</p>
+      </div>
+      <div class="date-card">
+        <p class="date-value">November 20</p>
+        <p class="date-label">Trial concludes</p>
+        <p class="body-text">Verdict expected<br>Jason goes home</p>
+      </div>
+    </div>
+    <p class="italic-footer" style="text-align:center;">Jason is going to Alamosa whether or not a camera is with him.<br>The trial happens. The question is whether a filmmaker is standing next to him<br>when he walks through those courthouse doors.</p>
+  </div>
+</section>
+
+<!-- THE HUMAN ARCHITECTURE -->
+<section id="characters">
+  <div class="container">
+    <h2 class="section-header">The Human Architecture</h2>
+    <div class="grid-2x2">
+      <div class="char-card">
+        <h3>Jason Morphew</h3>
+        <p class="label">Protagonist</p>
+        <hr class="thin-rule">
+        <p class="body-text">Yale-educated poet. The only Morphew who believes Barry is guilty. Estranged from his evangelical family. Going to Alamosa alone to watch his childhood hero be destroyed — and to figure out what it means.</p>
+      </div>
+      <div class="char-card">
+        <h3>Barry Morphew</h3>
+        <p class="label">The Accused</p>
+        <hr class="thin-rule">
+        <p class="body-text">Former Blue Jays draft pick. Self-made landscaping millionaire. Survivalist hunter. Devoted evangelical. Prosecutor says he sedated Suzanne with wildlife tranquilizer and moved her body twice. He says God knows the truth.</p>
+      </div>
+      <div class="char-card">
+        <h3>Suzanne Morphew</h3>
+        <p class="label">The Victim</p>
+        <hr class="thin-rule">
+        <p class="body-text">Warm, kind, a cancer survivor. Was having an affair. Had begun drinking wine. Barry reportedly suggested to the FBI that this behavior might have been God's punishment. Her daughters stand behind her accused killer.</p>
+      </div>
+      <div class="char-card">
+        <h3>The Family</h3>
+        <p class="label">Greek Chorus</p>
+        <hr class="thin-rule">
+        <p class="body-text">A large Indiana evangelical clan that has circled the wagons completely. Macy and Mallory Morphew, Barry's daughters, attend every hearing at their father's side. Jason is persona non grata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE ARCHIVAL WORLD -->
+<section id="archival">
+  <div class="container">
+    <h2 class="section-header">The Archival World</h2>
+    <p class="pull-quote" style="margin-bottom:2.5rem;">This case has been generating material for five years. The archival landscape is unusually rich.</p>
+    <div class="grid-2">
+      <div>
+        <p class="accent-label">Family &amp; Personal</p>
+        <ul class="archival-list">
+          <li>Home movies and family VHS spanning decades — Arkansas, Indiana, Colorado</li>
+          <li>Barry's Blue Jays draft coverage: newspaper clippings, sports photography, local TV</li>
+          <li>Morphew family photographs across two generations</li>
+          <li>Suzanne's active social media presence: posts, photos, video — a documented life</li>
+          <li>Jason's own materials: poems, song recordings, photographs, letters</li>
+          <li>Barry and Suzanne's texts, including Barry's final message to her</li>
+        </ul>
+      </div>
+      <div>
+        <p class="accent-label">News &amp; Court</p>
+        <ul class="archival-list">
+          <li>Five years of national news footage: Dateline, 48 Hours, Good Morning America (×2), local Colorado TV</li>
+          <li>Barry's multiple on-camera TV interviews — processed grief, evolving narrative</li>
+          <li>The 130-page arrest affidavit: a documentary in itself</li>
+          <li>Court proceedings: six weeks of trial footage via credentialed press</li>
+          <li>Forensic photographs and evidence exhibits entering public record at trial</li>
+          <li>DA Linda Stanley's media appearances — a prosecution that destroyed its own prosecutor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE WITNESSES -->
+<section id="witnesses">
+  <div class="container">
+    <h2 class="section-header">The Witnesses</h2>
+    <p class="pull-quote" style="margin-bottom:2.5rem;">The film's interview world extends well beyond the trial — anchoring the personal story in a larger American context.</p>
+    <div class="grid-3">
+      <div class="witness-card">
+        <h3>The Family World</h3>
+        <div class="witness-entry">
+          <strong>Jason's wife and children</strong>
+          <span>The family he is leaving behind. The cost of showing up.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>David Moorman</strong>
+          <span>Suzanne's brother. Has spoken publicly and with fury. Victim impact.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Morphew extended family</strong>
+          <span>The wagons are circled — but cracks exist. The film will find them.</span>
+        </div>
+      </div>
+      <div class="witness-card">
+        <h3>Faith &amp; Culture</h3>
+        <div class="witness-entry">
+          <strong>Evangelical theologians</strong>
+          <span>The theology Barry invoked is not fringe. Scholars can contextualize it.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Former evangelicals</strong>
+          <span>People who left the same world Jason left — who understand the specific violence of that exit.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Southern Colorado community</strong>
+          <span>Salida and the San Luis Valley are evangelical strongholds. The community speaks.</span>
+        </div>
+      </div>
+      <div class="witness-card">
+        <h3>Legal &amp; Forensic</h3>
+        <div class="witness-entry">
+          <strong>Trial journalists</strong>
+          <span>Reporters embedded for six weeks who provide the procedural scaffolding Jason's subjectivity doesn't supply.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>BAM compound experts</strong>
+          <span>The murder weapon is a wildlife sedative used to harvest deer sperm. Its story is extraordinary.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Former DA Linda Stanley</strong>
+          <span>Lost her law license because of this case. The story of a prosecution that consumed its own prosecutor.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE FORM -->
+<section id="form">
+  <div class="container">
+    <h2 class="section-header">The Form</h2>
+    <div class="grid-2">
+      <div>
+        <p class="accent-label">Jason's Vision</p>
+        <p class="body-text">Jason's pitch explicitly deconstructs the true crime format — naming and then swerving from each convention. He invokes REM's formal self-awareness: foregrounding the form to defamiliarize it.</p>
+        <p class="body-text">The hook that isn't a hook. The investigation that turns inward. The resolution that doesn't resolve. The structure acknowledges what it's supposed to do — and refuses.</p>
+        <p class="body-text">He is not performing grief. He will be candid and earnest. This film will feel like it costs something to make.</p>
+      </div>
+      <div>
+        <p class="accent-label">The Tradition It Belongs To</p>
+        <div class="form-comp">
+          <strong>Stories We Tell</strong> <span style="color:var(--muted); font-size:0.85rem;">(Polley, 2012)</span>
+          <span>The filmmaker is inside the crime. Family memory as unreliable narrator. The investigation turns on the investigator.</span>
+        </div>
+        <div class="form-comp">
+          <strong>Sugarcane</strong> <span style="color:var(--muted); font-size:0.85rem;">(NoiseCat & Rezende, 2024)</span>
+          <span>A filmmaker investigating his own family's institutional trauma. Inside the story, not outside it. Sundance Grand Jury Prize.</span>
+        </div>
+        <div class="form-comp">
+          <strong>Procession</strong> <span style="color:var(--muted); font-size:0.85rem;">(Greene, 2021)</span>
+          <span>Survivors of clergy abuse reconstruct their past on camera. Religion, control, formally inventive, deeply personal.</span>
+        </div>
+        <div class="form-comp">
+          <strong>Daughters</strong> <span style="color:var(--muted); font-size:0.85rem;">(Love & Patton, 2024)</span>
+          <span>Fathers in prison, daughters on the outside. Family fracture across an institutional divide. Sundance Grand Jury Prize.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE DIRECTOR -->
+<section id="director">
+  <div class="container">
+    <h2 class="section-header">The Director</h2>
+    <p class="pull-quote" style="margin-bottom:2.5rem;">This film needs a director who understands that Jason's consciousness IS the film — not a device for delivering the case.</p>
+
+    <div class="director-card">
+      <div class="dir-info">
+        <h3>Penny Lane</h3>
+        <p class="label">Hail Satan? · Escapes</p>
+      </div>
+      <div class="dir-divider"></div>
+      <p class="dir-text">Her films engage evangelical culture and American belief head-on. Formally playful, emotionally honest. Knows exactly what Jason is trying to do with the genre.</p>
+    </div>
+
+    <div class="director-card">
+      <div class="dir-info">
+        <h3>Heidi Ewing</h3>
+        <p class="label">Jesus Camp · I Carry You With Me</p>
+      </div>
+      <div class="dir-divider"></div>
+      <p class="dir-text">Has spent her career inside faith communities. Knows how belief becomes control. Deep empathy for subjects she's simultaneously interrogating.</p>
+    </div>
+
+    <div class="director-card">
+      <div class="dir-info">
+        <h3>Kitty Green</h3>
+        <p class="label">Casting JonBenét · The Assistant</p>
+      </div>
+      <div class="dir-divider"></div>
+      <p class="dir-text">Casting JonBenét refuses to deliver the true crime goods — it turns the genre inside out. She would understand this project's formal ambition immediately.</p>
+    </div>
+
+    <div class="director-card">
+      <div class="dir-info">
+        <h3>Alma Har'el</h3>
+        <p class="label">Bombay Beach · LoveTrue</p>
+      </div>
+      <div class="dir-divider"></div>
+      <p class="dir-text">Works in lyric documentary territory — personal, wandering, poetic. Would match Jason's sensibility as a poet and songwriter. Form over formula.</p>
+    </div>
+
+    <div class="director-card">
+      <div class="dir-info">
+        <h3>Theo Anthony</h3>
+        <p class="label">All Light Everywhere</p>
+      </div>
+      <div class="dir-divider"></div>
+      <p class="dir-text">Formally adventurous. Treats the act of filming as part of the subject. His films ask what it means to look at something — which is exactly what this film asks.</p>
+    </div>
+
+    <p class="italic-footer">Jason has turned down everyone who came to him with a formula. He needs a collaborator who will build the form with him.</p>
+  </div>
+</section>
+
+<!-- THE AUDIENCE -->
+<section id="audience">
+  <div class="container">
+    <h2 class="section-header">The Audience</h2>
+    <p class="pull-quote" style="margin-bottom:2.5rem;">This film operates at the intersection of four audience segments that streamers are actively competing to serve — and a single acquisition serves all four.</p>
+    <div class="grid-2x2">
+      <div class="audience-card">
+        <p class="accent-label">True Crime Subscribers</p>
+        <p class="audience-scope">Largest documentary segment on every major platform</p>
+        <hr class="thin-rule">
+        <p class="body-text">The case has a built-in national audience — Dateline, 48 Hours, YouTube channels with hundreds of thousands of subscribers. Those viewers will come for the case. The film holds them with something the formula never delivers: genuine interiority and a family member inside the house.</p>
+      </div>
+      <div class="audience-card">
+        <p class="accent-label">The Evangelical Diaspora</p>
+        <p class="audience-scope">~30M Americans have left evangelical Christianity</p>
+        <hr class="thin-rule">
+        <p class="body-text">People who grew up in the same world Jason and Barry did — and got out, or tried to. This film speaks their exact language. The specific grammar of "witnessing," of eternity as excuse for the present, of husbands as household heads — this is not background noise for them. It is autobiography.</p>
+      </div>
+      <div class="audience-card">
+        <p class="accent-label">Prestige Documentary Audience</p>
+        <p class="audience-scope">Festival-to-streaming: Sundance → HBO / Netflix / A24</p>
+        <hr class="thin-rule">
+        <p class="body-text">The audience that drove Daughters, Sugarcane, and Procession to awards attention. Educated, 28–55, urban. They want films that use a particular story to say something true about America. This film has that engine. Jason's voice — a Yale-and-UCLA poet who once marched against abortion — is sui generis.</p>
+      </div>
+      <div class="audience-card">
+        <p class="accent-label">The Political Moment</p>
+        <p class="audience-scope">MAGA, gender, power — and the 2026 midterm cycle</p>
+        <hr class="thin-rule">
+        <p class="body-text">Barry cast his missing wife's ballot for Trump while under suspicion of her murder. That single act sits at the intersection of every live political argument in America: domestic control, masculine authority, Christian nationalism, election integrity. The trial lands in October 2026 — the midterm cycle. The timing is not incidental.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section id="next">
+  <div class="container">
+    <h2 class="section-header">Next Steps</h2>
+
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <div class="step-content">
+        <h3>Meet Jason</h3>
+        <p class="body-text">Jason Morphew is in Los Angeles. He has been approached by multiple production companies and has turned all of them down. He is not looking for the highest bidder. He is looking for the right collaborator. This conversation starts there.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <div class="step-content">
+        <h3>Director Conversation</h3>
+        <p class="body-text">Identify a director who can commit October 13 – November 20, 2026 and spend the year following in post. The director shortlist is the first creative decision. The right director changes everything about how this project develops.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <div class="step-content">
+        <h3>Distribution</h3>
+        <p class="body-text">With director attached, approach HBO Documentary, Hulu, Netflix Doc, or A24 (its proximity to the literary/prestige register makes it a natural home). Sundance — now relocating permanently to Boulder, Colorado in 2027 — is the natural first destination. A Colorado film, acquired at a Colorado festival.</p>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <div class="step-content">
+        <h3>The Clock Is Running</h3>
+        <p class="body-text">This project is not speculative. Jason is going to Alamosa. The trial begins October 13. The window closes November 20. Everyone who has come to Jason with a formula has been turned away. This is a different conversation.</p>
+      </div>
+    </div>
+
+    <p class="contact-line">Bob Gosse &nbsp;|&nbsp; <a href="mailto:bobgosse@gmail.com">bobgosse@gmail.com</a> &nbsp;|&nbsp; 213-926-2993</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <hr class="divider-line">
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
