@@ -133,9 +133,15 @@
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem; }
   .grid-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .span-full { grid-column: 1 / -1; }
 
+  @media (max-width: 1000px) {
+    .grid-4 { grid-template-columns: 1fr 1fr; }
+  }
   @media (max-width: 768px) {
-    .grid-2, .grid-3, .grid-2x2 { grid-template-columns: 1fr; }
+    .grid-2, .grid-3, .grid-2x2, .grid-4 { grid-template-columns: 1fr; }
+    .span-full { grid-column: auto; }
   }
 
   /* === HERO === */
@@ -275,6 +281,63 @@
   }
   .audience-card .body-text { font-size: 0.9rem; }
 
+  /* === INSTITUTION === */
+  #institution {
+    background: #1A1A1A;
+    border-top: 1px solid rgba(184,90,56,0.15);
+    border-bottom: 1px solid rgba(184,90,56,0.15);
+  }
+  .institution-lede {
+    font-family: var(--serif); font-size: 1.1rem; line-height: 1.7;
+    color: var(--text); margin-bottom: 2.5rem; max-width: 800px;
+  }
+  .institution-list { list-style: none; }
+  .institution-list li {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid rgba(107,101,96,0.15);
+    font-size: 0.95rem; line-height: 1.7;
+  }
+  .institution-list li:last-child { border-bottom: none; }
+  .institution-list strong {
+    font-family: var(--serif); color: var(--accent);
+    display: block; margin-bottom: 0.25rem;
+    font-size: 1rem; letter-spacing: 0.02em;
+  }
+  .institution-close {
+    font-family: var(--serif); font-style: italic;
+    margin-top: 2.5rem; font-size: 1rem; color: var(--text);
+  }
+
+  /* === EVIDENCE === */
+  .evidence-band h3 {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1rem;
+  }
+  .evidence-band ul { list-style: none; }
+  .evidence-band li {
+    font-size: 0.85rem; padding: 0.5rem 0; line-height: 1.55;
+    border-bottom: 1px solid rgba(107,101,96,0.1);
+    color: rgba(240,237,230,0.9);
+  }
+  .evidence-band li:last-child { border-bottom: none; }
+  .evidence-band {
+    background: var(--card); padding: 1.75rem; border-radius: 2px;
+  }
+
+  /* === STAKES === */
+  #stakes { padding: 6rem 0; }
+  .stakes-body {
+    max-width: 720px; margin: 0 auto;
+    font-family: var(--serif); font-size: 1.15rem;
+    line-height: 1.8; color: var(--text);
+  }
+  .stakes-body p { margin-bottom: 1.75rem; }
+  .stakes-body p:first-child { font-style: italic; }
+  .stakes-close {
+    font-family: var(--serif); font-style: italic;
+    color: var(--accent); margin-top: 2rem; font-size: 1.1rem;
+  }
+
   /* === NEXT STEPS === */
   .step-card {
     background: var(--card); padding: 2rem; border-radius: 2px;
@@ -315,12 +378,14 @@
       <li><a href="#protagonist">Protagonist</a></li>
       <li><a href="#inheritance">Inheritance</a></li>
       <li><a href="#window">Window</a></li>
+      <li><a href="#institution">Institution</a></li>
       <li><a href="#characters">Characters</a></li>
-      <li><a href="#archival">Archival</a></li>
+      <li><a href="#evidence">Evidence</a></li>
       <li><a href="#witnesses">Witnesses</a></li>
       <li><a href="#form">Form</a></li>
       <li><a href="#director">Director</a></li>
       <li><a href="#audience">Audience</a></li>
+      <li><a href="#stakes">Stakes</a></li>
       <li><a href="#next">Next</a></li>
     </ul>
   </div>
@@ -348,12 +413,12 @@
       <div class="case-left">
         <p class="body-text"><strong>What we know:</strong> Barry Morphew was first arrested for Suzanne's murder in May 2021. Charges were dropped just before trial in April 2022. After Suzanne's remains were found in a shallow grave in 2023 — with animal tranquilizer in her bones — he was indicted again in June 2025. He has been arrested for this crime twice.</p>
         <p class="body-text">When the first case was dismissed, Barry sued every law enforcement officer involved for $15 million in restitution. The suit was thrown out — but its list of grievances is public record, and it is very wild.</p>
-        <p class="body-text">The evidence is damning. The case is strong. The verdict is coming.</p>
+        <p class="body-text">The evidence is substantial. The case is also the second prosecution. The first one collapsed in 2022 — and on its way down it disbarred a District Attorney, ended a judge's career, drove federal and state investigators out of law enforcement, and produced a $15 million civil suit that the Tenth Circuit dismissed on April 6, 2026. The system is now trying to correct itself, in the same district where Suzanne's remains were found. Whether it succeeds is part of the story.</p>
       </div>
       <div class="case-right">
         <p class="body-text">The story is a poet driving alone to a small Colorado city to watch his childhood hero be destroyed — and to reckon with the mythology that made him.</p>
         <p class="body-text">Jason Morphew is the only person in his family who believes Barry is guilty. The rest have closed ranks.</p>
-        <p class="body-text" style="font-weight:600;">This film is about what it means to carry a name.</p>
+        <p class="body-text" style="font-weight:600;">This film is about what it means to carry a name — and what it means to watch an institution try, a second time, to do what it failed to do the first time.</p>
       </div>
     </div>
     <p class="italic-footer">The genre is the foil. The subject is the self.</p>
@@ -381,6 +446,10 @@
       <div class="card moment-card">
         <h3>The cost of leaving</h3>
         <p class="body-text">Jason's estrangement from his evangelical family is decades in the making. The trial is the moment it becomes irreversible. That rupture is the emotional engine of the film.</p>
+      </div>
+      <div class="card moment-card span-full">
+        <h3>Institutional accountability</h3>
+        <p class="body-text">Linda Stanley's disbarment was a rare instance of a prosecutor being held to account. Iris Eytan turned a defense practice into a movement to end prosecutorial immunity. The trial sits at the intersection of evangelical patriarchy on one side and a real, contested fight over institutional accountability on the other.</p>
       </div>
     </div>
   </div>
@@ -424,8 +493,9 @@
       <div class="inheritance-panel">
         <h3>The Sedative in the Bones</h3>
         <hr class="thin-rule">
-        <p class="body-text">Barry allegedly killed Suzanne with BAM — a wildlife tranquilizer used to sedate deer. The autopsy found it in her femur.</p>
-        <p class="body-text">What sedates a person into compliance? For Suzanne it was literal. For Jason it was evangelical certainty — the faith that Barry used to justify everything, up to and including, Jason suspects, murder.</p>
+        <p class="body-text">Barry allegedly killed Suzanne with BAM — a wildlife tranquilizer used to sedate deer for antler harvesting and sperm collection in the captive deer-farming industry. The autopsy found it in her femur. Prosecutors say Barry was the only private citizen in southwestern Colorado with legal access to it.</p>
+        <p class="body-text">The defense plans a six-week forensic showdown: of three labs consulted, only the El Paso County Coroner's office found BAM in Suzanne's bones, and the defense will argue that lab is certified only for DUI testing.</p>
+        <p class="body-text">What sedates a person into compliance? For Suzanne it was literal — a compound from an industry built on chemically immobilizing female animals to harvest material from male ones. For Jason it was evangelical certainty — the faith Barry used to justify everything, up to and including, Jason suspects, murder.</p>
         <p class="body-text">Jason woke up and ran. The trial is where he finds out whether he got it all out of his bones — or whether some of it is still in there, invisible, undetected, the way Suzanne's was.</p>
       </div>
     </div>
@@ -454,6 +524,25 @@
       </div>
     </div>
     <p class="italic-footer" style="text-align:center;">Jason is going to Alamosa whether or not a camera is with him.<br>The trial happens. The question is whether a filmmaker is standing next to him<br>when he walks through those courthouse doors.</p>
+  </div>
+</section>
+
+<!-- THE INSTITUTION ON TRIAL -->
+<section id="institution">
+  <div class="container">
+    <h2 class="section-header">The Institution on Trial</h2>
+    <p class="institution-lede">This is not a typical murder trial. It is the second prosecution of the same man for the same crime — and nearly everyone who touched the first one paid for it.</p>
+    <ul class="institution-list">
+      <li><strong>Second prosecution.</strong>Barry has been arrested for this crime twice. The first case was dismissed in April 2022 on the eve of trial.</li>
+      <li><strong>A disbarred prosecutor.</strong>DA Linda Stanley lost her law license in 2024 over her conduct in this case and others. The Colorado Supreme Court upheld disbarment in 2025.</li>
+      <li><strong>A judge who resigned.</strong>Ramsey Lama left the bench in his early forties, citing health reasons, three months after dismissing the original case.</li>
+      <li><strong>Investigators off the case.</strong>CBI agent Joseph Cahill resigned under a Brady letter from his own director. FBI agent Jonathan Grusing departed the Bureau. Chaffee County Sheriff John Spezze stepped down.</li>
+      <li><strong>A $15M civil suit, dismissed.</strong>The Tenth Circuit upheld dismissal of Barry's federal civil rights lawsuit on April 6, 2026 — but its 129-page complaint is public record, and extraordinary.</li>
+      <li><strong>The forensic science is itself contested.</strong>Of three labs consulted, only one detected BAM in Suzanne's femur. The defense will spend weeks attacking that lab's credibility.</li>
+      <li><strong>A defendant out on $3 million bond.</strong>Rare for a Murder 1 charge. Funded through sources Barry's attorneys have declined to disclose.</li>
+      <li><strong>A courtroom under siege.</strong>The trial court has restricted livestream access after true-crime channels violated prior orders.</li>
+    </ul>
+    <p class="institution-close">The system is trying to correct itself in real time. Jason is in the gallery while it does.</p>
   </div>
 </section>
 
@@ -486,36 +575,61 @@
         <hr class="thin-rule">
         <p class="body-text">A large Indiana evangelical clan — Barry's and Jason's fathers were two of twelve siblings — that has circled the wagons completely. Macy and Mallory Morphew attend every hearing at their father's side. Jason is persona non grata.</p>
       </div>
+      <div class="char-card span-full">
+        <h3>The Casualties</h3>
+        <p class="label">Case Fallout</p>
+        <hr class="thin-rule">
+        <p class="body-text">The first prosecution destroyed nearly everyone who touched it. DA Linda Stanley was disbarred. Judge Ramsey Lama resigned in his early forties. CBI agent Joseph Cahill resigned under a Brady letter from his own director. FBI agent Jonathan Grusing left the Bureau. Sheriff John Spezze stepped down. The second trial is being held in the wreckage of the first.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- THE ARCHIVAL WORLD -->
-<section id="archival">
+<!-- THE EVIDENTIARY UNIVERSE -->
+<section id="evidence">
   <div class="container">
-    <h2 class="section-header">The Archival World</h2>
-    <p class="pull-quote" style="margin-bottom:2.5rem;">This case has been generating material for five years. The archival landscape is unusually rich.</p>
-    <div class="grid-2">
-      <div>
-        <p class="accent-label">Family &amp; Personal</p>
-        <ul class="archival-list">
+    <h2 class="section-header">The Evidentiary Universe</h2>
+    <p class="pull-quote" style="margin-bottom:2.5rem;">Five years of accumulating material. The visual abundance of this project is unusual.</p>
+    <div class="grid-4">
+      <div class="evidence-band">
+        <h3>Family &amp; Personal Archive</h3>
+        <ul>
           <li>Home movies and family VHS spanning decades — Arkansas, Indiana, Colorado</li>
-          <li>Barry's Blue Jays draft coverage: newspaper clippings, sports photography, local TV</li>
+          <li>Barry's Toronto Blue Jays draft coverage: newspaper clippings, sports photography, local TV</li>
           <li>Morphew family photographs across two generations</li>
-          <li>Suzanne's active social media presence: posts, photos, video — a documented life</li>
+          <li>Suzanne's active social media presence — a documented life</li>
           <li>Jason's own materials: poems, song recordings, photographs, letters</li>
           <li>Barry and Suzanne's texts, including Barry's final message to her</li>
         </ul>
       </div>
-      <div>
-        <p class="accent-label">News &amp; Court</p>
-        <ul class="archival-list">
-          <li>Five years of national news footage: Dateline, 48 Hours, Good Morning America (×2), local Colorado TV</li>
-          <li>Barry's multiple on-camera TV interviews — processed grief, evolving narrative</li>
-          <li>The 130-page arrest affidavit: a documentary in itself</li>
-          <li>Court proceedings: six weeks of trial footage via credentialed press</li>
+      <div class="evidence-band">
+        <h3>News &amp; Broadcast</h3>
+        <ul>
+          <li>Five years of national news: Dateline, 48 Hours, Good Morning America (×2), local Colorado TV</li>
+          <li>Barry's multiple on-camera interviews — processed grief, evolving narrative</li>
+          <li>DA Linda Stanley's media appearances, including her interactions with the <em>Profiling Evil</em> YouTube channel that contributed to her disbarment</li>
+          <li>True-crime YouTube coverage that the trial court has now restricted</li>
+        </ul>
+      </div>
+      <div class="evidence-band">
+        <h3>Legal &amp; Institutional</h3>
+        <ul>
+          <li>The 129-page arrest affidavit</li>
+          <li>Six weeks of trial footage via credentialed press</li>
           <li>Forensic photographs and evidence exhibits entering public record at trial</li>
-          <li>DA Linda Stanley's media appearances — a prosecution that destroyed its own prosecutor</li>
+          <li>The Brady letter on CBI agent Joseph Cahill</li>
+          <li>Stanley's 83-page disbarment opinion</li>
+          <li>The Tenth Circuit ruling dismissing Barry's $15M civil suit (April 6, 2026)</li>
+          <li>The original civil complaint — a public document of grievance, extraordinary in its scope</li>
+        </ul>
+      </div>
+      <div class="evidence-band">
+        <h3>Industry &amp; Context</h3>
+        <ul>
+          <li>Captive deer-farming industry footage — antler harvesting, semen collection, the world Barry came out of</li>
+          <li>BAM compound research and CDC reporting on medetomidine</li>
+          <li>Colorado Parks and Wildlife prescription records (only two entities in southwestern Colorado received BAM prescriptions, 2017–2020)</li>
+          <li>Evangelical media archives — the theology Barry invoked, in its native context</li>
         </ul>
       </div>
     </div>
@@ -526,51 +640,75 @@
 <section id="witnesses">
   <div class="container">
     <h2 class="section-header">The Witnesses</h2>
-    <p class="pull-quote" style="margin-bottom:2.5rem;">The film's interview world extends well beyond the trial — anchoring the personal story in a larger American context.</p>
+    <p class="pull-quote" style="margin-bottom:2.5rem;">The interview world extends well beyond the trial — anchoring Jason's journey in the larger institutional and cultural story.</p>
     <div class="grid-3">
       <div class="witness-card">
-        <h3>The Family World</h3>
+        <h3>Family &amp; Personal World</h3>
         <div class="witness-entry">
           <strong>Jason's wife and children</strong>
           <span>The family he is leaving behind. The cost of showing up.</span>
         </div>
         <div class="witness-entry">
           <strong>David Moorman</strong>
-          <span>Suzanne's brother. Has spoken publicly and with fury. Victim impact.</span>
+          <span>Suzanne's brother. Has spoken publicly with fury. Victim impact.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Melinda Balzer</strong>
+          <span>Suzanne's sister. Has commented publicly on the case's progress.</span>
         </div>
         <div class="witness-entry">
           <strong>Morphew extended family</strong>
-          <span>The wagons are circled — but cracks exist. The film will find them.</span>
+          <span>The wagons are circled, but cracks exist. The film will find them.</span>
         </div>
       </div>
       <div class="witness-card">
-        <h3>Faith &amp; Culture</h3>
+        <h3>Legal, Forensic &amp; Institutional Accountability</h3>
+        <div class="witness-entry">
+          <strong>Iris Eytan</strong>
+          <span>Barry's first lead defense attorney. Left criminal defense practice after the first prosecution, founded Protect Ethical Prosecutors (PEP), drafted Colorado legislation to end prosecutorial immunity. The case turned a defense lawyer into a movement.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Jane Fisher-Byrialsen</strong>
+          <span>Eytan's civil co-counsel; now co-counseling Barry's criminal defense alongside David Beller. Argued the Tenth Circuit appeal.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Dru Nielsen</strong>
+          <span>Eytan's longtime partner at Eytan Nielsen. Co-counseled the original criminal case.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Judge Ramsey Lama</strong>
+          <span>Resigned April 2022 in his early forties. Now in private practice. Dismissed the first case after barring 12 prosecution expert witnesses for "reckless" missed deadlines.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Linda Stanley</strong>
+          <span>Disbarred 2024 / license lost November 2024 after Colorado Supreme Court upheld in 2025. The board described her as "a ship's captain who never appeared on the bridge."</span>
+        </div>
+        <div class="witness-entry">
+          <strong>John Camper</strong>
+          <span>Former CBI Director who issued the Brady letter against his own agent.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>Carol McKinley</strong>
+          <span>Primary reporter on the case (Denver Gazette / Colorado Sun). Procedural scaffolding Jason's subjectivity does not supply.</span>
+        </div>
+        <div class="witness-entry">
+          <strong>BAM &amp; deer-farming experts</strong>
+          <span>The murder weapon's origin story is its own documentary.</span>
+        </div>
+      </div>
+      <div class="witness-card">
+        <h3>Faith &amp; Cultural Context</h3>
         <div class="witness-entry">
           <strong>Evangelical theologians</strong>
-          <span>The theology Barry invoked is not fringe. Scholars can contextualize it.</span>
+          <span>The theology Barry invoked is not fringe; scholars can contextualize it.</span>
         </div>
         <div class="witness-entry">
           <strong>Former evangelicals</strong>
-          <span>People who left the same world Jason left — who understand the specific violence of that exit.</span>
+          <span>People who left the same world Jason left, who understand the specific violence of that exit.</span>
         </div>
         <div class="witness-entry">
           <strong>Southern Colorado community</strong>
-          <span>Salida, the San Luis Valley, and nearby Colorado Springs — one of the capitals of American evangelical culture alongside Dallas and Orange County.</span>
-        </div>
-      </div>
-      <div class="witness-card">
-        <h3>Legal &amp; Forensic</h3>
-        <div class="witness-entry">
-          <strong>The case's casualties</strong>
-          <span>DA Linda Stanley lost her law license. Judge Ramsey Lama retired in his early forties. FBI agent Jonathan Grusing quit and became a school consultant. CBI agent Joseph Cahill got drunk, quit, and shot himself in the foot. The case consumed everyone who touched it.</span>
-        </div>
-        <div class="witness-entry">
-          <strong>BAM compound experts</strong>
-          <span>The murder weapon is a wildlife sedative used to harvest deer sperm. Its story is extraordinary on its own terms.</span>
-        </div>
-        <div class="witness-entry">
-          <strong>Trial journalists</strong>
-          <span>Reporters embedded for six weeks — including Denver journalist Carol McKinley, the primary reporter on the case — who provide the procedural scaffolding Jason's subjectivity doesn't supply.</span>
+          <span>Salida, the San Luis Valley, and nearby Colorado Springs, one of the capitals of American evangelical culture alongside Dallas and Orange County.</span>
         </div>
       </div>
     </div>
@@ -676,7 +814,8 @@
         <p class="accent-label">True Crime Subscribers</p>
         <p class="audience-scope">Largest documentary segment on every major platform</p>
         <hr class="thin-rule">
-        <p class="body-text">The case has a built-in national audience — Dateline, 48 Hours, YouTube channels with hundreds of thousands of subscribers. Those viewers will come for the case. The film holds them with something the formula never delivers: genuine interiority and a family member inside the house.</p>
+        <p class="body-text">The case has a built-in national audience — Dateline, 48 Hours, YouTube channels with hundreds of thousands of subscribers. But the true-crime audience has <em>materially shaped this case</em>: Stanley's disbarment was driven in part by her conduct on a true-crime YouTube show, and the trial court has had to restrict livestream access after channels violated the judge's orders.</p>
+        <p class="body-text" style="margin-top:1rem;">The film's formal swerve from true-crime convention is not aesthetic preference. It is a response to what true-crime consumption has done to the thing being tried. That is a sharper proposition for buyers than "true crime done well."</p>
       </div>
       <div class="audience-card">
         <p class="accent-label">The Evangelical Diaspora</p>
@@ -696,6 +835,18 @@
         <hr class="thin-rule">
         <p class="body-text">Barry cast his missing wife's ballot for Trump while under suspicion for her murder. That single act sits at the intersection of every live political argument in America: domestic control, masculine authority, Christian nationalism, election integrity. The trial lands in October 2026 — the midterm cycle. The timing is not incidental.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE STAKES -->
+<section id="stakes">
+  <div class="container">
+    <h2 class="section-header">The Stakes</h2>
+    <div class="stakes-body">
+      <p><em>The Apostate</em> asks whether American institutions — the church, the family, the courts, the press — can hold a man like Barry Morphew accountable. And whether the cousin who got out was ever really free of him.</p>
+      <p>Suzanne Morphew tried to leave the marriage and was killed. Linda Stanley tried to convict him and was disbarred. Iris Eytan tried to defend him and left criminal practice for legislative reform. Jason Morphew is going to Alamosa to find out what is still in his bones.</p>
+      <p class="stakes-close">The trial is the test. The film is the witness.</p>
     </div>
   </div>
 </section>
