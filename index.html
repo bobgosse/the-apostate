@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>THE APOSTATE — A Documentary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -378,9 +379,105 @@
   /* Footer space */
   footer { padding: 3rem 0; text-align: center; }
   footer .divider-line { border: none; border-top: 1px solid rgba(107,101,96,0.2); margin-bottom: 2rem; }
+
+  /* === ACCESS GATE (courtesy only — not security; assets stay at public URLs) === */
+  body.locked { overflow: hidden; }
+  #gate {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 1.5rem; text-align: center;
+  }
+  #gate.unlocked { display: none; }
+  #gate .gate-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 7vw, 3.5rem);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    font-weight: normal; color: var(--text);
+    margin-bottom: 2.5rem;
+  }
+  #gate form { width: 100%; max-width: 300px; }
+  #gate input {
+    width: 100%; background: transparent;
+    border: none; border-bottom: 1px solid var(--muted);
+    color: var(--text);
+    font-family: var(--sans); font-size: 1rem;
+    letter-spacing: 0.2em; text-align: center;
+    padding: 0.6rem 0.5rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  #gate input:focus, #gate.error input { border-bottom-color: var(--accent); }
+  #gate input::placeholder { color: var(--muted); letter-spacing: 0.2em; }
+  #gate .gate-error {
+    margin-top: 1rem; min-height: 1rem;
+    font-family: var(--sans); font-size: 0.75rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); opacity: 0;
+    transition: opacity 0.2s;
+  }
+  #gate.error .gate-error { opacity: 1; }
+
+  /* === IMAGERY (additive — one austere monochrome family) === */
+  .fig { margin: 0; }
+  .fig img {
+    display: block; width: 100%; height: auto;
+    border-radius: 2px;
+    border: 1px solid rgba(240,237,230,0.15);
+    filter: grayscale(0.85) contrast(1.05) sepia(0.12);
+  }
+  .fig figcaption {
+    margin-top: 0.65rem;
+    font-family: var(--sans);
+    font-size: 0.8rem; line-height: 1.5;
+    color: var(--muted);
+    font-variant: small-caps;
+    letter-spacing: 0.07em;
+  }
+  /* Full-width captioned bands placed BETWEEN text blocks — they never split a text column */
+  .image-band { margin-top: 3rem; }
+  .image-row { display: grid; gap: 2rem; align-items: start; }
+  .image-row.cols-2 { grid-template-columns: 1fr 1fr; }
+  .image-row.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .image-row.cols-inherit { grid-template-columns: 1.6fr 1fr; align-items: center; }
+  .fig-constrained { max-width: 340px; }
+  /* Yellowed newsprint artifact */
+  .fig--clipping img {
+    filter: sepia(0.5) contrast(1.02) brightness(1.04) saturate(0.85) grayscale(0.1);
+    transform: rotate(-1.6deg);
+    border-color: rgba(184,90,56,0.22);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+  }
+  /* Original SVG case-geography map */
+  .map-figure { margin: 3rem auto 0; max-width: 780px; }
+  .map-figure svg { width: 100%; height: auto; display: block; }
+  .map-caption {
+    font-family: var(--serif); font-style: italic;
+    color: var(--muted); font-size: 0.95rem;
+    margin-top: 1rem; text-align: center;
+  }
+  @media (max-width: 768px) {
+    .image-row.cols-2, .image-row.cols-3, .image-row.cols-inherit { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
-<body>
+<body class="locked">
+
+<!-- ACCESS GATE (courtesy gate — not security; the page's assets remain at public URLs) -->
+<div id="gate">
+  <h1 class="gate-title">The Apostate</h1>
+  <form id="gate-form" autocomplete="off">
+    <input type="password" id="gate-input" placeholder="Password" aria-label="Password" autocomplete="off" spellcheck="false" autofocus>
+    <p class="gate-error" id="gate-error">Incorrect password</p>
+  </form>
+</div>
+<script>
+  // Returning visitors in this tab skip the gate (minimizes any flash of the prompt).
+  if (sessionStorage.getItem('apostate_unlocked') === 'true') {
+    document.getElementById('gate').classList.add('unlocked');
+    document.body.classList.remove('locked');
+  }
+</script>
 
 <!-- NAV -->
 <nav>
@@ -441,6 +538,42 @@
         <p class="body-text" style="font-weight:600;">This film is about what it means to carry a name — and what it means to watch an institution try, a second time, to do what first it failed to do. If the justice system gets a second chance, does a family?</p>
       </div>
     </div>
+    <figure class="map-figure">
+      <svg viewBox="0 0 800 520" role="img" aria-label="Map of the Morphew case geography across Colorado: where Suzanne was last seen near Maytag in Chaffee County, where Barry was working near Broomfield, and where Suzanne's remains were found in Saguache County.">
+        <!-- Colorado (a rectangle state), bone linework -->
+        <rect x="70" y="70" width="660" height="380" fill="none" stroke="#F0EDE6" stroke-opacity="0.18" stroke-width="1.5"/>
+        <!-- compass -->
+        <g stroke="#F0EDE6" stroke-opacity="0.4" fill="#F0EDE6" fill-opacity="0.55">
+          <line x1="110" y1="135" x2="110" y2="100" stroke-width="1.2"/>
+          <path d="M110 96 l4 9 -8 0 z" stroke="none"/>
+          <text x="110" y="150" font-family="Inter, sans-serif" font-size="11" fill="#6B6560" fill-opacity="1" text-anchor="middle" letter-spacing="1">N</text>
+        </g>
+        <!-- faint dashed rust connecting line: Broomfield -> Maytag -> Saguache -->
+        <path d="M520 180 L374 275 L387 344" fill="none" stroke="#B85A38" stroke-opacity="0.55" stroke-width="1.4" stroke-dasharray="5 6"/>
+        <!-- orientation references (bone) -->
+        <circle cx="545" cy="207" r="3.5" fill="none" stroke="#F0EDE6" stroke-opacity="0.45" stroke-width="1.2"/>
+        <text x="556" y="211" font-family="Inter, sans-serif" font-size="11" fill="#6B6560" letter-spacing="0.5" style="text-transform:uppercase">Denver</text>
+        <circle cx="426" cy="389" r="3.5" fill="none" stroke="#F0EDE6" stroke-opacity="0.45" stroke-width="1.2"/>
+        <text x="438" y="393" font-family="Inter, sans-serif" font-size="11" fill="#6B6560" letter-spacing="0.5" style="text-transform:uppercase">Alamosa · San Luis Valley</text>
+        <!-- case markers (rust) -->
+        <!-- Broomfield: where Barry was working -->
+        <circle cx="520" cy="180" r="6" fill="#B85A38"/>
+        <circle cx="520" cy="180" r="11" fill="none" stroke="#B85A38" stroke-opacity="0.4" stroke-width="1"/>
+        <text x="536" y="172" font-family="Inter, sans-serif" font-size="11.5" fill="#F0EDE6" fill-opacity="0.92" letter-spacing="0.5" style="text-transform:uppercase">Broomfield</text>
+        <text x="536" y="187" font-family="Inter, sans-serif" font-size="11.5" fill="#6B6560">Where Barry was working · May 10, 2020</text>
+        <!-- Maytag / Chaffee County: where Suzanne was last seen -->
+        <circle cx="374" cy="275" r="6" fill="#B85A38"/>
+        <circle cx="374" cy="275" r="11" fill="none" stroke="#B85A38" stroke-opacity="0.4" stroke-width="1"/>
+        <text x="360" y="268" font-family="Inter, sans-serif" font-size="11.5" fill="#F0EDE6" fill-opacity="0.92" letter-spacing="0.5" text-anchor="end" style="text-transform:uppercase">Maytag · Chaffee County</text>
+        <text x="360" y="283" font-family="Inter, sans-serif" font-size="11.5" fill="#6B6560" text-anchor="end">Where Suzanne was last seen · May 10, 2020</text>
+        <!-- Moffat / Saguache County: where remains were found -->
+        <circle cx="387" cy="344" r="6" fill="#B85A38"/>
+        <circle cx="387" cy="344" r="11" fill="none" stroke="#B85A38" stroke-opacity="0.4" stroke-width="1"/>
+        <text x="403" y="343" font-family="Inter, sans-serif" font-size="11.5" fill="#F0EDE6" fill-opacity="0.92" letter-spacing="0.5" style="text-transform:uppercase">Moffat · Saguache County</text>
+        <text x="403" y="358" font-family="Inter, sans-serif" font-size="11.5" fill="#6B6560">Where Suzanne's remains were found · Sept 2023</text>
+      </svg>
+      <figcaption class="map-caption">Where she was last seen, where he was working, and where she was found — three years apart.</figcaption>
+    </figure>
     <p class="italic-footer">The genre is the foil. The subject is the self.</p>
   </div>
 </section>
@@ -493,6 +626,16 @@
         <p class="body-text">Every production company that has approached Jason has come with a formula. He has turned them all down. He is not looking for the highest bidder. He is looking for the right collaborator.</p>
       </div>
     </div>
+    <div class="image-band image-row cols-2">
+      <figure class="fig">
+        <img src="assets/jason_basketball_allstar.jpg" alt="Jason Morphew as a high-school basketball all-star, wearing number 30." loading="lazy">
+        <figcaption>Jason Morphew, high-school all-star · #30 — the boy who idolized his athlete cousin</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="assets/jason_present_stairs.jpg" alt="Jason Morphew, present day, photographed in black and white on a staircase." loading="lazy">
+        <figcaption>Jason Morphew, present day — the poet going back</figcaption>
+      </figure>
+    </div>
     <p class="italic-footer">He once wanted to be Barry.</p>
   </div>
 </section>
@@ -519,6 +662,16 @@
         <p class="body-text">Jason woke up and ran. The trial is where he finds out whether he got it all out of his bones — or whether some of it is still in there, invisible, undetected, the way Suzanne's was.</p>
       </div>
     </div>
+    <div class="image-band image-row cols-inherit">
+      <figure class="fig">
+        <img src="assets/morphew_family_period_bw.jpg" alt="A period black-and-white photograph of the Morphew family." loading="lazy">
+        <figcaption>The Morphew family — the world he left behind</figcaption>
+      </figure>
+      <figure class="fig fig--clipping">
+        <img src="assets/barry_drafted_clipping.png" alt="A yellowed newspaper clipping reporting that Barry Morphew was drafted by the Toronto Blue Jays." loading="lazy">
+        <figcaption>Barry Morphew, drafted by the Toronto Blue Jays</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -543,6 +696,12 @@
         <p class="body-text">Verdict expected<br>Jason goes home</p>
       </div>
     </div>
+    <div class="image-band">
+      <figure class="fig">
+        <img src="assets/barry_courthouse_RIGHTS_VERIFY.png" alt="Barry Morphew leaving the courthouse with his attorneys." loading="lazy">
+        <figcaption>Barry Morphew leaving court with his attorneys</figcaption>
+      </figure>
+    </div>
     <p class="italic-footer" style="text-align:center;">Jason is going to Alamosa whether or not a camera is with him.<br>The trial happens. The question is whether a filmmaker is standing next to him<br>when he walks through those courthouse doors.</p>
   </div>
 </section>
@@ -563,6 +722,12 @@
       <li><strong>A defense built on Suzanne's personal life.</strong>Barry's attorney has signaled the defense will surface accounts of Suzanne's affair and personal conduct to suggest alternative suspects. The same patriarchal logic — in death.</li>
     </ul>
     <p class="institution-close">The system is trying to correct itself in real time. Jason is in the gallery while it does.</p>
+    <div class="image-band">
+      <figure class="fig fig-constrained">
+        <img src="assets/linda_stanley_RIGHTS_VERIFY.jpg" alt="Linda Stanley, the district attorney who was disbarred over her conduct in the case." loading="lazy">
+        <figcaption>Linda Stanley — the district attorney, disbarred</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -595,6 +760,20 @@
         <hr class="thin-rule">
         <p class="body-text">A large Indiana evangelical clan — Barry's and Jason's fathers were two of twelve siblings — that has circled the wagons completely. Barry and Suzanne's daughters Macy and Mallory Morphew attend every hearing at their father's side. Jason is persona non grata.</p>
       </div>
+    </div>
+    <div class="image-band image-row cols-3">
+      <figure class="fig">
+        <img src="assets/barry_suzanne_wedding.png" alt="Barry and Suzanne Morphew in a wedding portrait." loading="lazy">
+        <figcaption>Barry and Suzanne Morphew</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="assets/barry_suzanne_doorway.jpg" alt="Barry and Suzanne Morphew, a candid photograph in a doorway." loading="lazy">
+        <figcaption>Barry and Suzanne, the marriage at the center</figcaption>
+      </figure>
+      <figure class="fig">
+        <img src="assets/suzanne_morphew_portrait.png" alt="Suzanne Morphew, smiling." loading="lazy">
+        <figcaption>Suzanne Morphew · 1971–2020</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -756,6 +935,10 @@
         <p class="body-text">Jason's original pitch explicitly deconstructs the true crime format — naming and then swerving from each convention. He invokes REM's formal self-awareness: foregrounding the form to defamiliarize it.</p>
         <p class="body-text">The hook that isn't a hook. The investigation that turns inward. The resolution that doesn't resolve. The structure acknowledges what it's supposed to do — and refuses.</p>
         <p class="body-text">He is not performing grief. He will be candid and earnest. This film will feel like it costs something to make.</p>
+        <figure class="fig fig-constrained" style="margin-top:2rem;">
+          <img src="assets/jason_present_portrait.jpg" alt="Jason Morphew, present day, looking directly at the camera in black and white." loading="lazy">
+          <figcaption>Jason Morphew</figcaption>
+        </figure>
       </div>
       <div>
         <p class="accent-label">The Tradition It Belongs To</p>
@@ -930,6 +1113,29 @@
 </footer>
 
 <script>
+  // ACCESS GATE — courtesy only; not real security.
+  (function () {
+    const PASSWORD = 'APOSTATE2026';
+    const gate = document.getElementById('gate');
+    const form = document.getElementById('gate-form');
+    const input = document.getElementById('gate-input');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (input.value === PASSWORD) {
+          sessionStorage.setItem('apostate_unlocked', 'true');
+          gate.classList.add('unlocked');
+          document.body.classList.remove('locked');
+        } else {
+          gate.classList.add('error');
+          input.value = '';
+          input.focus();
+        }
+      });
+      input.addEventListener('input', function () { gate.classList.remove('error'); });
+    }
+  })();
+
   const hamburger = document.getElementById('hamburger');
   const navLinks = document.getElementById('nav-links');
   hamburger.addEventListener('click', () => {
