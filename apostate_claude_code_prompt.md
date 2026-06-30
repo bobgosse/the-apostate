@@ -1,5 +1,7 @@
 # Claude Code Prompt: The Apostate Deck Revisions
 
+> **Note (2026-06-30):** The trial dates in this spec are superseded. On June 24, 2026 the Morphew trial was continued; it is now expected in the first half of 2027 with no court-set date yet. The "October 13 – November 20, 2026" range below (and any other trial-date references in this document) is historical. The live site `index.html` is the source of truth for current trial-date language.
+
 ## Context
 
 This is the pitch deck for *The Apostate*, a documentary about poet Jason Morphew traveling alone to Alamosa, Colorado for the October 13 – November 20, 2026 murder trial of his cousin Barry Morphew. The deck is a single-scroll dark-themed site with red accent bars on section headers.
