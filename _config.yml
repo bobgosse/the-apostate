@@ -1,0 +1,7 @@
+# GitHub Pages (Jekyll) configuration.
+# Keep internal working docs in the repo but OUT of the published site.
+# The _private/ directory is already excluded by Jekyll's underscore convention;
+# this list makes the intent explicit and covers it belt-and-suspenders.
+exclude:
+  - _private/
+  - Apostate_Site_Images/
