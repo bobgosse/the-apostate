@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>THE APOSTATE — Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root{
+    color-scheme: dark;
+    --ground:#141414;
+    --raised:#1c1a19;
+    --line:#34302d;
+    --ink:#f0ede6;
+    --ink-2:#c9c3ba;
+    --muted:#958d86;
+    --rust:#c8683f;
+    --rust-soft:#3a2219;
+    --bone:#d9d2c6;
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;padding-inline:20px;padding-block:0 64px}
+  a{color:var(--rust);text-underline-offset:3px}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--rust);outline-offset:3px}
+  .wrap{max-width:1080px;margin-inline:auto}
+
+  header.top{padding-block:56px 28px;display:grid;gap:14px}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,5vw,50px);line-height:1.08;margin:0;text-wrap:balance;max-width:20ch}
+  h1 em{color:var(--rust);font-style:italic}
+  .lede{color:var(--ink-2);max-width:62ch;margin:0;font-size:16px}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:6px;font-size:13px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .mk{width:11px;height:11px;border-radius:50%;display:inline-block;flex:none}
+  .mk.j{background:var(--rust)}
+  .mk.c{background:var(--bone)}
+  .mk.u{background:transparent;border:1.5px dashed var(--muted)}
+  .mk.xr{background:var(--ground);border:2px solid var(--rust);box-shadow:0 0 0 3px var(--ground),0 0 0 4px var(--rust)}
+
+  .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line);padding-block:12px;display:grid;gap:10px}
+  .filters{display:flex;flex-wrap:wrap;gap:8px}
+  .filters button{font:500 13px/1 var(--sans);color:var(--ink-2);background:transparent;border:1px solid var(--line);border-radius:999px;padding:9px 14px;cursor:pointer}
+  .filters button[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+  .lanes{display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+  .lanes .l{color:var(--rust);text-align:right;padding-right:20px}
+  .lanes .r{color:var(--bone);grid-column:3;padding-left:20px}
+
+  .tl{position:relative;padding-block:10px 20px}
+  .tl::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:1px;background:var(--line);transform:translateX(-.5px)}
+  .yr{position:relative;display:flex;justify-content:center;padding-block:34px 6px}
+  .yr span{font-family:var(--serif);font-size:22px;background:var(--ground);padding:4px 14px;position:relative}
+  .yr small{display:block;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+  .seg{display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);position:relative}
+  .stack{display:flex;flex-direction:column;gap:24px;padding-block:14px}
+  .stack.L{grid-column:1;padding-right:20px}
+  .stack.R{grid-column:3;padding-left:20px}
+  .ev{position:relative;max-width:46ch}
+  .stack.L .ev{margin-left:auto}
+  .ev::before{content:"";position:absolute;top:5px;width:11px;height:11px;border-radius:50%}
+  .ev::after{content:"";position:absolute;top:10px;height:1px;width:44px;background:var(--line)}
+  .stack.L .ev::before{right:-53.5px;background:var(--rust)}
+  .stack.L .ev::after{right:-44px;width:38px}
+  .stack.R .ev::before{left:-53.5px;background:var(--bone)}
+  .stack.R .ev::after{left:-44px;width:38px}
+  .ev.u::before{background:var(--ground)!important;border:1.5px dashed var(--muted)}
+  .d{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-variant-numeric:tabular-nums}
+  .stack.L .d{color:var(--rust)}
+  .stack.R .d{color:var(--bone)}
+  .t{font-family:var(--serif);font-size:18px;line-height:1.25;margin:3px 0 4px;text-wrap:balance}
+  .b{color:var(--ink-2);font-size:14.5px;margin:0}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chip{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 7px;border-radius:3px;border:1px solid var(--line);color:var(--muted)}
+  .chip.theory{border-color:var(--rust);color:var(--rust)}
+  .src{font-size:13px;margin-top:6px;display:inline-block}
+  .lanetag{display:none}
+
+  .x{grid-column:1/-1;position:relative;margin:26px auto;max-width:640px;width:100%;background:var(--raised);border:1px solid var(--rust);border-radius:4px;padding:22px 24px 20px}
+  .x::before{content:"";position:absolute;left:50%;top:-8px;width:14px;height:14px;border-radius:50%;background:var(--ground);border:2px solid var(--rust);transform:translateX(-50%);box-shadow:0 0 0 3px var(--ground)}
+  .x .d{color:var(--rust)}
+  .x .kick{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  .x .t{font-size:21px}
+  .x .note{margin:10px 0 0;font-size:13.5px;color:var(--muted);font-style:italic}
+
+  .now{grid-column:1/-1;display:flex;align-items:center;justify-content:center;padding-block:18px}
+  .now span{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ground);background:var(--ink);padding:6px 12px;border-radius:999px;position:relative}
+
+  .fork{margin-top:10px;display:grid;grid-template-columns:minmax(0,1fr) 72px minmax(0,1fr);align-items:start}
+  .fork .jside{grid-column:1;padding-right:20px;text-align:right}
+  .fork .cside{grid-column:3;padding-left:20px;display:grid;gap:10px}
+  .verdict{border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+  .verdict b{font-family:var(--serif);font-weight:400;font-size:18px;display:block}
+  .verdict span{font-size:13.5px;color:var(--muted)}
+  .jside p{font-family:var(--serif);font-size:20px;line-height:1.35;margin:0 0 10px;text-wrap:balance}
+  .jside .q{font-size:15px;color:var(--ink-2);font-style:italic}
+  .jside .q cite{display:block;font-style:normal;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+  section.people,section.notes{border-top:1px solid var(--line);margin-top:56px;padding-top:34px}
+  h2{font-family:var(--serif);font-weight:400;font-size:28px;margin:0 0 6px}
+  .sub{color:var(--muted);margin:0 0 24px;max-width:62ch}
+  .groups{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px 36px}
+  .group h3{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin:0 0 10px}
+  .group dl{margin:0;display:grid;gap:10px}
+  .group dt{font-weight:600;font-size:14.5px}
+  .group dd{margin:0;color:var(--muted);font-size:13.5px}
+  .notes ul{margin:0;padding-left:18px;color:var(--ink-2);display:grid;gap:8px;max-width:72ch}
+  .notes ol{margin:0;padding-left:18px;display:grid;gap:6px;font-size:13.5px;color:var(--muted)}
+  .notes h3{font-family:var(--mono);font-weight:500;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:28px 0 12px}
+
+  @media (max-width:760px){
+    .lanes{display:none}
+    .tl::before{left:13px}
+    .yr{justify-content:flex-start}
+    .yr span{padding-left:0}
+    .yr small{text-align:left}
+    .seg{grid-template-columns:26px minmax(0,1fr);row-gap:22px}
+    .stack.L,.stack.R{grid-column:2;padding:0 0 0 14px}
+    .stack{padding-block:8px;gap:22px}
+    .stack.L .ev{margin-left:0}
+    .stack.L .ev::before,.stack.R .ev::before{right:auto;left:-32.5px}
+    .stack.L .ev::after,.stack.R .ev::after{right:auto;left:-27px;width:20px}
+    .lanetag{display:inline;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-right:8px;color:var(--muted)}
+    .x{grid-column:2;margin:18px 0 18px 14px;padding:18px}
+    .x::before{left:-27px;top:20px;transform:none}
+    .now{grid-column:2;justify-content:flex-start;padding-left:14px}
+    .fork{grid-template-columns:26px minmax(0,1fr);gap:18px}
+    .fork .cside,.fork .jside{grid-column:2;padding:0 0 0 14px;text-align:left}
+    .fork .jside{order:2}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .filters button{transition:background .15s,color .15s}
+  }
+</style>
+<style>
+  :root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+
+  /* === ACCESS GATE (courtesy only — not security; same password and unlock as the pitch page) === */
+  body.locked{overflow:hidden}
+  #gate{position:fixed;inset:0;z-index:9999;background:var(--ground);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center}
+  #gate.unlocked{display:none}
+  #gate .gate-title{font-family:var(--serif);font-size:clamp(2rem,7vw,3.5rem);letter-spacing:.25em;text-transform:uppercase;font-weight:normal;color:var(--ink);margin:0 0 2.5rem}
+  #gate form{width:100%;max-width:300px}
+  #gate input{width:100%;background:transparent;border:none;border-bottom:1px solid var(--muted);color:var(--ink);font-family:var(--sans);font-size:1rem;letter-spacing:.2em;text-align:center;padding:.6rem .5rem;outline:none;transition:border-color .2s}
+  #gate input:focus,#gate.error input{border-bottom-color:var(--rust)}
+  #gate input::placeholder{color:var(--muted);letter-spacing:.2em}
+  #gate .gate-error{margin:1rem 0 0;min-height:1rem;font-family:var(--sans);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rust);opacity:0;transition:opacity .2s}
+  #gate.error .gate-error{opacity:1}
+
+  .back{display:inline-block;margin-top:24px;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
+  .back + header.top{padding-top:32px}
+</style>
+</head>
+<body class="locked">
+
+<!-- ACCESS GATE (courtesy gate — not security; the page's assets remain at public URLs) -->
+<div id="gate">
+  <h1 class="gate-title">The Apostate</h1>
+  <form id="gate-form" autocomplete="off">
+    <input type="password" id="gate-input" placeholder="Password" aria-label="Password" autocomplete="off" spellcheck="false" autofocus>
+    <p class="gate-error" id="gate-error">Incorrect password</p>
+  </form>
+</div>
+<script>
+  // Visitors already unlocked on the pitch page (same tab) skip the gate.
+  if (sessionStorage.getItem('apostate_unlocked') === 'true') {
+    document.getElementById('gate').classList.add('unlocked');
+    document.body.classList.remove('locked');
+  }
+</script>
+
+<div class="wrap">
+  <a class="back" href="index.html">← The pitch</a>
+  <header class="top">
+    <div class="eyebrow">The Apostate · timeline · updated September 27, 2026</div>
+    <h1>Two stories. Only one of them ends in a <em>verdict</em>.</h1>
+    <p class="lede">The case against Barry Morphew runs down the right side toward a courtroom in Alamosa on July 19, 2027. Jason's life runs down the left. The rings mark where the two touch. The trial settles Barry's story. Jason's holds either way.</p>
+    <div class="legend" aria-label="Legend">
+      <span><i class="mk j"></i>Jason</span>
+      <span><i class="mk c"></i>Barry, Suzanne and the case</span>
+      <span><i class="mk xr"></i>Where their lives cross</span>
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="filters" role="group" aria-label="Show">
+      <button type="button" id="f-all" data-f="all" aria-pressed="true">Everything</button>
+      <button type="button" id="f-jason" data-f="jason" aria-pressed="false">Jason only</button>
+      <button type="button" id="f-case" data-f="case" aria-pressed="false">The case only</button>
+      <button type="button" id="f-cross" data-f="cross" aria-pressed="false">Where they cross</button>
+    </div>
+    <div class="lanes" aria-hidden="true"><div class="l">Jason</div><div class="r">Barry &amp; the case</div></div>
+  </div>
+
+  <main class="tl" id="tl" aria-label="Timeline"></main>
+
+  <section class="people" aria-labelledby="people-h">
+    <h2 id="people-h">Who's who</h2>
+    <p class="sub">Everyone named on the timeline, grouped by where they sit in the story. The Arizona woman Barry was living with in 2025 is left unnamed on purpose; police promised her anonymity.</p>
+    <div class="groups" id="people"></div>
+  </section>
+
+  <section class="notes" aria-labelledby="notes-h">
+    <h2 id="notes-h">Sources</h2>
+    
+    <ol id="sources"></ol>
+  </section>
+</div>
+
+<script>
+(function(){
+  // L = Jason, R = Barry & the case, X = where they cross. u = date approximate / to confirm.
+  var ERAS = [
+    {y:"Before", s:"Childhood to 2011", segs:[
+      {L:[
+        {d:"Childhood", t:"Hot Springs, Arkansas", b:"Jason grows up Southern Baptist, witnessing to anyone he thinks might not be saved."},
+        {d:"Summers", t:"The traplines", b:"On visits to Indiana, Jason rides along each morning as Barry collects squirrels, raccoons and rabbits from his traps. Barry sells the pelts. That money buys his first car, a cherry-red Cutlass Supreme. Jason calls it the kill-mobile."}
+      ], R:[
+        {d:"Childhood", t:"Alexandria, Indiana", b:"Barry, Jason's first cousin. He and Suzanne both graduate from Alexandria-Monroe High School. Their fathers, Rodger and Joe, are two of the three youngest of twelve Morphew siblings."}
+      ]},
+      {L:[
+        {d:"Junior high", t:"The hero", b:"Jason is a basketball player in Arkansas. When Barry is drafted, he becomes the family legend and Jason's hero. “It was even better that his name was the same as mine.”"}
+      ], R:[
+        {d:"1980s", u:1, t:"Drafted by the Toronto Blue Jays", b:"Barry is drafted out of high school, then dropped by the minor-league Medicine Hat Blue Jays. The family says he blew out his knee. Jason has never believed it."}
+      ]},
+      {L:[
+        {d:"Later", t:"Out of the church, out of Arkansas", b:"Yale BA. PhD in Renaissance literature from UCLA. Poet and songwriter in Los Angeles. A family of his own."}
+      ], R:[
+        {d:"Purdue", t:"Barry and Suzanne reconnect", b:"Barry studies horticulture. Suzanne Moorman, his high school girlfriend, is training to be a teacher."},
+        {d:"c. 1993", u:1, t:"Married", b:"Barry is 26, Suzanne 23. She will be his wife of 27 years when she disappears."},
+        {d:"Undated", t:"Cancer, then two daughters", b:"Suzanne survives non-Hodgkin's lymphoma. Doctors tell her she will never have children. Mallory and Macy are born."},
+        {d:"Undated", t:"The bucks and the tranquilizer", b:"Barry's landscaping business thrives. He hunts with crossbows, takes survivalist trips, and keeps captive bucks he sedates with the wildlife drug BAM to collect their semen."}
+      ]}
+    ]},
+    {y:"2012", segs:[
+      {X:{d:"Summer 2012", t:"The family reunion in Indiana", b:"Barry walks Jason and his pregnant wife past his bucks. Asked how the collecting works, he says he uses a tranquilizer gun. In the living room he asks, “Jason, do you believe in God?” Then he turns to his wife on the ottoman: “Suzanne, would you share your testimony?” She has clearly been given the cue before.", note:"The last time Jason sees Barry in person."}},
+      {R:[
+        {d:"Undated", u:1, t:"Suzanne Morphew Testimony Inc.", b:"Barry has a nonprofit registered in her name, according to Jason's reading of the 2021 arrest affidavit. After she disappears, he drains the account."}
+      ]}
+    ]},
+    {y:"2018–19", segs:[
+      {L:[
+        {d:"2018", t:"Jason's father dies", b:"Joe Morphew dies after years of not speaking to his only child. He never met or acknowledged Jason's son."},
+        {d:"2019", t:"“In Colorado?”", b:"A Google alert shows Jason a small-town Colorado paper listing Barry's daughter Macy on a high school honor roll. He had no idea the family had moved."}
+      ], R:[
+        {d:"By 2019", u:1, t:"The move west", b:"Barry and Suzanne leave Indiana for Maysville, near Salida, Colorado."},
+        {d:"c. 2018–20", u:1, t:"The affair", b:"Suzanne begins a secret, long-distance affair with Jeff Libler, a high school classmate. It lasts about two years. She quietly starts planning to leave the marriage."},
+        {d:"Undated", t:"The spy pen", b:"Suspecting Barry of affairs, Suzanne hides a voice-activated pen recorder in his truck. Her friend Sheila bought it. The FBI later recovers a recording of Suzanne herself telling someone named Jeff that she loves him."}
+      ]}
+    ]},
+    {y:"2020", segs:[
+      {R:[
+        {d:"May 9", tags:["Prosecution's theory"], t:"Last proof of life", b:"Suzanne sends Jeff Libler a photograph from the yard. Prosecutors say Barry came home, found her with the phone, chased her across the property and sedated her. His phone pings zigzag across the property at that hour. He tells the FBI he was chasing chipmunks with his gun out."},
+        {d:"May 10", t:"Mother's Day. Suzanne is gone.", b:"Barry has left before dawn for a work trip to Broomfield. A neighbor reports Suzanne missing. Her mountain bike turns up down a ravine near the house. The country is in COVID lockdown."}
+      ]},
+      {X:{d:"May 2020", t:"A text, and a thank-you", b:"Jason learns of it from a Google alert. He texts Barry that he is sorry and wishes him well. Barry texts back his thanks."}},
+      {L:[
+        {d:"2020–21", t:"Reading the genre", b:"Following the case from Los Angeles, Jason reads In Cold Blood, Shot in the Heart and The Executioner's Song, and academic studies of true crime."}
+      ], R:[
+        {d:"May 2020", t:"The video and the GoFundMe", b:"Barry releases a video pleading with Suzanne, then with her supposed abductors, for her return. He starts a GoFundMe and puts up posters."},
+        {d:"Fall 2020", t:"Her ballot", b:"Barry fills out Suzanne's mail-in ballot and casts it for Donald Trump. He later tells the FBI he thought husbands could vote for their wives."},
+        {d:"2020–21", u:1, t:"The Fox interview", b:"Shouting at a Colorado Fox reporter, Barry says Suzanne was eaten by a mountain lion or trafficked, and that if one person got saved as a result, she would think it was worth it."}
+      ]}
+    ]},
+    {y:"2021", segs:[
+      {L:[
+        {d:"May 2021", t:"Laurel Canyon", b:"A friend texts Jason that Barry has been arrested. “I couldn't speak or breathe.”"}
+      ], R:[
+        {d:"May 2021", t:"First arrest", b:"Barry is charged with first-degree murder. The arrest affidavit runs about 130 pages and lays out Suzanne's steps to leave the marriage."}
+      ]}
+    ]},
+    {y:"2022", segs:[
+      {L:[
+        {d:"Feb 19", t:"The Daily Beast", b:"Jason publishes “My Cousin Allegedly Killed His Wife and Cast Her Vote for Trump,” about the 2012 visit.", src:{h:"https://www.thedailybeast.com/barry-morphew-is-my-cousin-and-allegedly-killed-his-wife-and-cast-her-vote-for-trump/", l:"Read it"}}
+      ], R:[
+        {d:"Apr 19", t:"Case dismissed", b:"On the eve of trial, prosecutors drop the charge without prejudice after Judge Ramsey Lama bars most of their expert witnesses over missed deadlines. It can be refiled."},
+        {d:"2022", t:"The judge leaves the bench", b:"Ramsey Lama steps down in his early forties."},
+        {d:"Jul 21", t:"Guilty plea: the ballot", b:"Barry pleads guilty to felony forgery for casting Suzanne's ballot. He gets a one-year deferred sentence with supervised probation and 32 hours of community service. Two other charges are dropped.", src:{h:"https://www.kktv.com/2022/07/21/barry-morphew-pleads-guilty-forgery-charge/", l:"KKTV"}},
+        {d:"2022–23", u:1, t:"The investigators go", b:"CBI agent Joseph Cahill resigns under a Brady letter from his own director. FBI agent Jonathan Grusing leaves the Bureau. Chaffee County Sheriff John Spezze steps down."}
+      ]}
+    ]},
+    {y:"2023", segs:[
+      {R:[
+        {d:"May", t:"The $15 million lawsuit", b:"Barry sues the prosecutors, investigators and Chaffee County in federal court for malicious prosecution. The complaint runs 189 pages.", src:{h:"https://krdo.com/top-stories/2023/05/02/barry-morphew-files-15-million-civil-suit-against-prosecutors-chaffee-county-law-enforcement/", l:"KRDO"}},
+        {d:"September", t:"Suzanne is found", b:"Her remains turn up in a shallow grave near Moffat, in Saguache County, about 40 miles from home. Her cancer port and some of her bike clothing are with her."}
+      ]}
+    ]},
+    {y:"2024", segs:[
+      {R:[
+        {d:"April", t:"The autopsy", b:"Her death is ruled a homicide. Tests on her femur find the three drugs that make up BAM: butorphanol, azaperone and medetomidine. The defense notes only one of three labs found them.", src:{h:"https://coloradosun.com/2026/03/06/barry-suzanne-morphew-murder-trial-chemical-compound-injection/", l:"Colorado Sun"}},
+        {d:"September", t:"Lawsuit dismissed", b:"A federal judge throws out Barry's suit.", src:{h:"https://www.cpr.org/2024/09/26/colorado-malicious-prosecution-lawsuit-dismissed-barry-morphew/", l:"CPR"}},
+        {d:"November", t:"The DA is disbarred", b:"Linda Stanley loses her law license over her handling of this case and others. The Colorado Supreme Court upholds it in 2025."},
+        {d:"Dec 28", t:"Cave Creek, Arizona", b:"In a bar outside Phoenix, Barry meets a woman. He tells her his name is Lee Moore.", src:{h:"https://www.denver7.com/news/investigations/new-arrest-report-reveals-barry-morphew-was-using-a-fake-name-in-arizona-before-2025-re-arrest", l:"Denver7"}}
+      ]}
+    ]},
+    {y:"2025", segs:[
+      {L:[
+        {d:"2025", t:"Eject City", b:"Jason's poetry collection is published. The case is in it."}
+      ], R:[
+        {d:"February", t:"Under watch", b:"The Colorado Bureau of Investigation asks Arizona state police to keep track of Barry."},
+        {d:"May", t:"He moves in", b:"Barry moves in with the woman he met in December. He pays for most things in cash and carries two phones."},
+        {d:"Jun 15", t:"Father's Day", b:"He tells her his real name, and that his wife “was abducted.” She has to search “missing Colorado” to learn his last name."},
+        {d:"Jun 18", t:"Indicted", b:"A grand jury in Colorado's 12th Judicial District charges Barry with first-degree murder. People v. Barry Morphew, 25CR128.", src:{h:"https://cbi.colorado.gov/news-article/indictment-of-barry-morphew", l:"CBI"}},
+        {d:"Jun 20", t:"Second arrest", b:"Stopped in traffic in Gilbert, Arizona. In his safe: an AR-15-style rifle, a silencer, and a red envelope from the Valentine's card he gave her, holding $1,000 of her cash. Bond: $3 million."},
+        {d:"September", t:"Out on bond", b:"Judge Amanda Hopkins lets him post the $3 million bond through a bondsman. He goes home to Maysville wearing a GPS monitor."},
+        {d:"October", t:"The livestream is cut", b:"After YouTube channels keep breaking the court's recording rules, the judge limits streaming to credentialed press."}
+      ]}
+    ]},
+    {y:"2026", segs:[
+      {R:[
+        {d:"Jan 12", t:"Not guilty, again", b:"Barry pleads not guilty and waives his right to a speedy trial. Trial is set for October 13, 2026.", src:{h:"https://www.coloradopolitics.com/2026/01/12/barry-morphew-pleads-not-guilty-to-murder-charge/", l:"Colorado Politics"}},
+        {d:"March", t:"Her remains", b:"Barry signs off on having Suzanne's remains cremated. Investigators get a warrant to take them back. Mallory and Macy ask the court for their mother's remains.", src:{h:"https://www.kktv.com/2026/03/09/judge-gives-morphew-daughters-opportunity-speak-colorado-murder-case-dating-back-2020/", l:"KKTV"}},
+        {d:"Apr 6", t:"The lawsuit, finally", b:"The federal appeals court upholds the dismissal of Barry's suit.", src:{h:"https://www.coloradopolitics.com/2026/04/07/10th-circuit-upholds-dismissal-of-barry-morphews-civil-lawsuit-against-prosecutors-investigators/", l:"Colorado Politics"}},
+        {d:"Jun 24", t:"Trial postponed", b:"The defense says it isn't ready for the volume of evidence, which the judge calls “unbelievable.” Suzanne's brother and sister, through attorney Tom Grant, object. The judge grants the delay."},
+        {d:"July", t:"A new date", b:"Trial set for July 19, 2027, for about six weeks."}
+      ]},
+      {L:[
+        {d:"Summer", t:"London", b:"On a family trip through Europe, Jason meets a company with Netflix development money. They are making what they call the definitive documentary on the case."},
+        {d:"Aug 9", t:"“The future of my childhood hero”", b:"Jason's essay runs in the Arkansas Democrat-Gazette. He says he will be at the trial.", src:{h:"https://www.arkansasonline.com/news/2026/aug/09/the-future-of-my-childhood-hero/", l:"Read it"}},
+        {d:"Aug 11", t:"NBC calls", b:"Two days after the essay runs, NBC reaches out to Jason directly."}
+      ], R:[
+        {d:"Aug 26", t:"Hit-and-run in Denver", b:"Police say Barry drove aggressively, struck two vehicles, refused to show ID, offered one driver $300 cash, then left by backing over a curb. He has not been charged.", src:{h:"https://krdo.com/news/2026/09/05/barry-morphew-arrested-days-after-being-ordered-on-house-arrest-for-alleged-hit-and-run/", l:"KRDO"}},
+        {d:"Sept 3", t:"Confined to his home", b:"Judge Hopkins orders him to stay home at all times."},
+        {d:"Sept 5", t:"Back in jail", b:"Arrested for leaving home in violation of the order. Held in the Boulder County Jail."},
+        {d:"Sept 8", t:"Bond: $10 million, cash only", b:"The judge says he has shown no respect for court orders. On March 4 he swore he had no assets to get a court-appointed lawyer. On a recorded jail call, he bragged he would be out on bond by the weekend.", src:{h:"https://krdo.com/news/crime/2026/09/08/barry-morphew-ten-million-bond/", l:"KRDO"}}
+      ]},
+      {NOW:"Today · Sept 27, 2026"}
+    ]},
+    {y:"Ahead", s:"2026–27", segs:[
+      {R:[
+        {d:"Nov 3, 2026", t:"Next hearing", b:"Virtual status hearing."}
+      ]},
+      {X:{kick:"People v. Barry Morphew · 12th Judicial District", d:"July 19, 2027", t:"Trial opens in Alamosa", b:"About six weeks, in a small courthouse in the San Luis Valley. Jason is in the gallery with a press pass. This is where the two timelines meet.", note:"Their story needs a verdict. Jason's does not."}},
+      {FORK:1}
+    ]}
+  ];
+
+  var PEOPLE = [
+    {g:"The Morphews", p:[
+      ["Barry Morphew","Accused of murdering his wife. Former Blue Jays draft pick, landscaper, hunter, evangelical."],
+      ["Suzanne Morphew","Née Moorman. Disappeared Mother's Day 2020, age 49. Cancer survivor, mother of two."],
+      ["Mallory and Macy Morphew","Their daughters. Both stand with their father."],
+      ["Jason Morphew","Barry's first cousin. Poet and songwriter in Los Angeles. The only one in the family who believes Barry did it."],
+      ["Rodger and Joe Morphew","Barry's father and Jason's father. Two of twelve siblings. Joe died in 2018."]
+    ]},
+    {g:"Suzanne's side", p:[
+      ["David Moorman","Her brother. Has spoken publicly and angrily about Barry."],
+      ["Melinda Balzer","Her sister."],
+      ["Tom Grant","Attorney for her siblings."],
+      ["Jeff Libler","High school classmate. Her lover for about two years. Has a firm alibi."],
+      ["Sheila","Suzanne's friend and high school classmate. Bought her the spy pen."]
+    ]},
+    {g:"The courts", p:[
+      ["Linda Stanley","District attorney on the first case. Disbarred."],
+      ["Ramsey Lama","Judge on the first case. Barred the prosecution's experts, then left the bench."],
+      ["Anne Kelly","District attorney prosecuting the current case."],
+      ["Amanda Hopkins","Chief judge presiding over the current case."]
+    ]},
+    {g:"Investigators", p:[
+      ["Jonathan Grusing","FBI agent; lead interviewer on the first affidavit. Left the Bureau."],
+      ["Joseph Cahill","CBI agent. Resigned under a Brady letter."],
+      ["John Camper","CBI director who issued that letter."],
+      ["John Spezze","Chaffee County sheriff. Stepped down."],
+      ["Gregg Slater","CBI agent in charge at the 2025 Arizona arrest."]
+    ]},
+    {g:"The defense", p:[
+      ["Iris Eytan","Lead defense on the first case. Now campaigns to let people sue prosecutors."],
+      ["Dru Nielsen","Eytan's law partner on the first case."],
+      ["David Beller","Lead defense attorney now."],
+      ["Jane Fisher-Byrialsen","Co-counsel now; argued the civil appeal."]
+    ]},
+    {g:"Press", p:[
+      ["Carol McKinley","Denver reporter who has covered the case most closely. A source for Jason."],
+      ["Lauren Scharf","Fox reporter Barry shouted at in his 2020–21 interview."],
+      ["Lindsay Schwartz","ABC producer behind the Good Morning America interviews with Barry and the daughters."]
+    ]}
+  ];
+
+  var SOURCES = [
+    ["Jason Morphew, “The future of my childhood hero,” Arkansas Democrat-Gazette, Aug 9, 2026","https://www.arkansasonline.com/news/2026/aug/09/the-future-of-my-childhood-hero/"],
+    ["Jason Morphew, “My Cousin Allegedly Killed His Wife and Cast Her Vote for Trump,” The Daily Beast, Feb 19, 2022","https://www.thedailybeast.com/barry-morphew-is-my-cousin-and-allegedly-killed-his-wife-and-cast-her-vote-for-trump/"],
+    ["KKTV, “Barry Morphew pleads guilty to forgery charge,” Jul 21, 2022","https://www.kktv.com/2022/07/21/barry-morphew-pleads-guilty-forgery-charge/"],
+    ["KRDO, $15 million civil suit filed, May 2, 2023","https://krdo.com/top-stories/2023/05/02/barry-morphew-files-15-million-civil-suit-against-prosecutors-chaffee-county-law-enforcement/"],
+    ["CPR News, civil suit dismissed, Sept 26, 2024","https://www.cpr.org/2024/09/26/colorado-malicious-prosecution-lawsuit-dismissed-barry-morphew/"],
+    ["Colorado Bureau of Investigation, indictment announcement, June 2025","https://cbi.colorado.gov/news-article/indictment-of-barry-morphew"],
+    ["Denver7, Arizona arrest report and alias, 2025","https://www.denver7.com/news/investigations/new-arrest-report-reveals-barry-morphew-was-using-a-fake-name-in-arizona-before-2025-re-arrest"],
+    ["Colorado Politics, not-guilty plea, Jan 12, 2026","https://www.coloradopolitics.com/2026/01/12/barry-morphew-pleads-not-guilty-to-murder-charge/"],
+    ["Colorado Sun, the BAM evidence, Mar 6, 2026","https://coloradosun.com/2026/03/06/barry-suzanne-morphew-murder-trial-chemical-compound-injection/"],
+    ["KKTV, daughters and the remains, Mar 9, 2026","https://www.kktv.com/2026/03/09/judge-gives-morphew-daughters-opportunity-speak-colorado-murder-case-dating-back-2020/"],
+    ["Colorado Politics, appeals court upholds dismissal, Apr 7, 2026","https://www.coloradopolitics.com/2026/04/07/10th-circuit-upholds-dismissal-of-barry-morphews-civil-lawsuit-against-prosecutors-investigators/"],
+    ["KRDO, hit-and-run and arrest, Sept 5, 2026","https://krdo.com/news/2026/09/05/barry-morphew-arrested-days-after-being-ordered-on-house-arrest-for-alleged-hit-and-run/"],
+    ["KRDO, bond raised to $10 million, Sept 8, 2026","https://krdo.com/news/crime/2026/09/08/barry-morphew-ten-million-bond/"],
+    ["Court TV, the judge on the jail calls, Sept 8, 2026","https://www.courttv.com/news/man-accused-of-killing-wife-violating-release-conditions-laughed-about-3-million-bond-in-jail-calls-judge/"],
+    ["Arizona Department of Public Safety interview with the woman Barry lived with, June 20, 2025 (transcript)",null]
+  ];
+
+  function el(tag, cls, text){ var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e; }
+
+  function event(ev, lane){
+    var a = el("article","ev");
+    a.dataset.lane = lane;
+    var d = el("div","d");
+    var tag = el("span","lanetag", lane==="L" ? "Jason" : "Case");
+    d.appendChild(tag);
+    d.appendChild(document.createTextNode(ev.d));
+    a.appendChild(d);
+    a.appendChild(el("h3","t",ev.t));
+    a.appendChild(el("p","b",ev.b));
+    var chips = [];
+    (ev.tags||[]).forEach(function(t){ chips.push(el("span","chip theory",t)); });
+    if(chips.length){ var c=el("div","chips"); chips.forEach(function(x){c.appendChild(x);}); a.appendChild(c); }
+    if(ev.src){ var s=el("a","src",ev.src.l+" ↗"); s.href=ev.src.h; s.target="_blank"; s.rel="noopener"; a.appendChild(s); }
+    return a;
+  }
+
+  var tl = document.getElementById("tl");
+  ERAS.forEach(function(era){
+    var box = el("section","era");
+    var yr = el("div","yr"); var sp = el("span",null,era.y);
+    if(era.s){ var sm=el("small",null,era.s); sp.appendChild(sm); }
+    yr.appendChild(sp); box.appendChild(yr);
+    era.segs.forEach(function(sg){
+      var seg = el("div","seg");
+      if(sg.X){
+        var x = el("div","x"); x.dataset.lane="X";
+        if(sg.X.kick) x.appendChild(el("div","kick",sg.X.kick));
+        x.appendChild(el("div","d",sg.X.d));
+        x.appendChild(el("h3","t",sg.X.t));
+        x.appendChild(el("p","b",sg.X.b));
+        if(sg.X.note) x.appendChild(el("p","note",sg.X.note));
+        seg.appendChild(x);
+      } else if(sg.NOW){
+        var n = el("div","now"); n.dataset.lane="NOW"; n.appendChild(el("span",null,sg.NOW)); seg.appendChild(n);
+      } else if(sg.FORK){
+        seg = el("div","fork"); seg.dataset.lane="X";
+        var j = el("div","jside");
+        j.appendChild(el("p",null,"Either way, Jason goes home with the same question: what is still in his bones."));
+        var q = el("p","q","“How could I let Barry's fame—finally won—define my family name, without my having something to say about it?”");
+        q.appendChild(el("cite",null,"Jason Morphew, Aug 2026"));
+        j.appendChild(q);
+        var c = el("div","cside");
+        [["Guilty","Barry's story ends in a sentence."],["Not guilty","Barry's story ends in a second release."]].forEach(function(v){
+          var vb = el("div","verdict"); vb.appendChild(el("b",null,v[0])); vb.appendChild(el("span",null,v[1])); c.appendChild(vb);
+        });
+        seg.appendChild(j); seg.appendChild(c);
+      } else {
+        if(sg.L && sg.L.length){ var L=el("div","stack L"); sg.L.forEach(function(e){L.appendChild(event(e,"L"));}); seg.appendChild(L); }
+        if(sg.R && sg.R.length){ var R=el("div","stack R"); sg.R.forEach(function(e){R.appendChild(event(e,"R"));}); seg.appendChild(R); }
+      }
+      box.appendChild(seg);
+    });
+    tl.appendChild(box);
+  });
+
+  var pg = document.getElementById("people");
+  PEOPLE.forEach(function(g){
+    var d = el("div","group"); d.appendChild(el("h3",null,g.g));
+    var dl = el("dl");
+    g.p.forEach(function(p){ var w=el("div"); w.appendChild(el("dt",null,p[0])); w.appendChild(el("dd",null,p[1])); dl.appendChild(w); });
+    d.appendChild(dl); pg.appendChild(d);
+  });
+
+  var so = document.getElementById("sources");
+  SOURCES.forEach(function(s){
+    var li = el("li");
+    if(s[1]){ var a=el("a",null,s[0]); a.href=s[1]; a.target="_blank"; a.rel="noopener"; li.appendChild(a); }
+    else li.textContent = s[0];
+    so.appendChild(li);
+  });
+
+  var show = {all:["L","R","X","NOW"], jason:["L","X","NOW"], "case":["R","X","NOW"], cross:["X"]};
+  function apply(f){
+    var ok = show[f];
+    tl.querySelectorAll("[data-lane]").forEach(function(n){ n.hidden = ok.indexOf(n.dataset.lane)<0; });
+    tl.querySelectorAll(".stack").forEach(function(s){ s.hidden = !s.querySelector(".ev:not([hidden])"); });
+    tl.querySelectorAll(".seg,.fork").forEach(function(s){ if(s.classList.contains("fork")) return; s.hidden = !s.querySelector("[data-lane]:not([hidden])"); });
+    tl.querySelectorAll(".era").forEach(function(e){ e.hidden = !e.querySelector(".seg:not([hidden]) [data-lane]:not([hidden]), .fork:not([hidden])"); });
+    document.querySelectorAll(".filters button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.f===f ? "true":"false"); });
+    try{ localStorage.setItem("apostate-tl-f", f); }catch(e){}
+  }
+  document.querySelectorAll(".filters button").forEach(function(b){ b.addEventListener("click", function(){ apply(b.dataset.f); }); });
+  var saved = "all"; try{ saved = localStorage.getItem("apostate-tl-f") || "all"; }catch(e){}
+  if(!show[saved]) saved = "all";
+  apply(saved);
+})();
+</script>
+
+<script>
+  // ACCESS GATE — courtesy only; not real security.
+  (function () {
+    const PASSWORD = 'APOSTATE2026';
+    const gate = document.getElementById('gate');
+    const form = document.getElementById('gate-form');
+    const input = document.getElementById('gate-input');
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (input.value === PASSWORD) {
+          sessionStorage.setItem('apostate_unlocked', 'true');
+          gate.classList.add('unlocked');
+          document.body.classList.remove('locked');
+        } else {
+          gate.classList.add('error');
+          input.value = '';
+          input.focus();
+        }
+      });
+      input.addEventListener('input', function () { gate.classList.remove('error'); });
+    }
+  })();
+</script>
+</body>
+</html>
