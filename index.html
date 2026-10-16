@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>THE APOSTATE — A Documentary</title>
+<title>HOWDY STRANGER — A Documentary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -478,7 +478,7 @@
 
 <!-- ACCESS GATE (courtesy gate — not security; the page's assets remain at public URLs) -->
 <div id="gate">
-  <h1 class="gate-title">The Apostate</h1>
+  <h1 class="gate-title">Howdy Stranger</h1>
   <form id="gate-form" autocomplete="off">
     <input type="password" id="gate-input" placeholder="Password" aria-label="Password" autocomplete="off" spellcheck="false" autofocus>
     <p class="gate-error" id="gate-error">Incorrect password</p>
@@ -495,7 +495,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#hero" class="nav-brand">The Apostate</a>
+    <a href="#hero" class="nav-brand">Howdy Stranger</a>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -525,7 +525,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="container">
-    <h1 class="hero-title">THE APOSTATE</h1>
+    <h1 class="hero-title">HOWDY STRANGER</h1>
     <p class="hero-subtitle">A Documentary</p>
     <p class="hero-logline">One man. One trial. The family he can't escape<br>and the name he gave his children.</p>
     <div class="hero-quote-block">
@@ -1123,7 +1123,7 @@
   <div class="container">
     <h2 class="section-header">The Stakes</h2>
     <div class="stakes-body">
-      <p><em>The Apostate</em> asks whether American institutions — the church, the family, the courts, the press — can hold a man like Barry Morphew accountable. And whether the cousin who got out was ever really free of him.</p>
+      <p><em>Howdy Stranger</em> asks whether American institutions — the church, the family, the courts, the press — can hold a man like Barry Morphew accountable. And whether the cousin who got out was ever really free of him.</p>
       <p>Suzanne Morphew tried to leave the marriage and never got the chance. Linda Stanley tried to convict him and was disbarred. Iris Eytan tried to defend him and left criminal practice for legislative reform. Jason Morphew is going to Alamosa to find out what is still in his bones.</p>
       <p class="stakes-close">The trial is the test. The film is the witness.</p>
     </div>
@@ -1180,14 +1180,15 @@
 <script>
   // ACCESS GATE — courtesy only; not real security.
   (function () {
-    const PASSWORD = 'APOSTATE2026';
+    // HOWDY2026 is the current password; APOSTATE2026 still works for readers given the old one.
+    const PASSWORDS = ['HOWDY2026', 'APOSTATE2026'];
     const gate = document.getElementById('gate');
     const form = document.getElementById('gate-form');
     const input = document.getElementById('gate-input');
     if (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (input.value === PASSWORD) {
+        if (PASSWORDS.includes(input.value)) {
           sessionStorage.setItem('apostate_unlocked', 'true');
           gate.classList.add('unlocked');
           document.body.classList.remove('locked');

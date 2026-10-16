@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>THE APOSTATE — Timeline</title>
+<title>HOWDY STRANGER — Timeline</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap">
@@ -163,7 +163,7 @@
 
 <!-- ACCESS GATE (courtesy gate — not security; the page's assets remain at public URLs) -->
 <div id="gate">
-  <h1 class="gate-title">The Apostate</h1>
+  <h1 class="gate-title">Howdy Stranger</h1>
   <form id="gate-form" autocomplete="off">
     <input type="password" id="gate-input" placeholder="Password" aria-label="Password" autocomplete="off" spellcheck="false" autofocus>
     <p class="gate-error" id="gate-error">Incorrect password</p>
@@ -180,7 +180,7 @@
 <div class="wrap">
   <a class="back" href="index.html">← The pitch</a>
   <header class="top">
-    <div class="eyebrow">The Apostate · timeline · updated September 29, 2026</div>
+    <div class="eyebrow">Howdy Stranger · timeline · updated September 29, 2026</div>
     <h1>Two stories. Only one of them ends in a <em>verdict</em>.</h1>
     <p class="lede">The case against Barry Morphew runs down the right side toward a courtroom in Alamosa on July 19, 2027. Jason's life runs down the left. The rings mark where the two touch. The trial settles Barry's story. Jason's holds either way.</p>
     <div class="legend" aria-label="Legend">
@@ -497,14 +497,15 @@
 <script>
   // ACCESS GATE — courtesy only; not real security.
   (function () {
-    const PASSWORD = 'APOSTATE2026';
+    // HOWDY2026 is the current password; APOSTATE2026 still works for readers given the old one.
+    const PASSWORDS = ['HOWDY2026', 'APOSTATE2026'];
     const gate = document.getElementById('gate');
     const form = document.getElementById('gate-form');
     const input = document.getElementById('gate-input');
     if (form) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (input.value === PASSWORD) {
+        if (PASSWORDS.includes(input.value)) {
           sessionStorage.setItem('apostate_unlocked', 'true');
           gate.classList.add('unlocked');
           document.body.classList.remove('locked');
